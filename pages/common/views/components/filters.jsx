@@ -77,7 +77,7 @@ class Filters extends Component {
                       values.map((filter, index) =>
                         <CheckedOption
                           key={index}
-                          name={`${key}-${index}`}
+                          name={`filter-${key}`}
                           id={`${key}-${filter}`}
                           value={filter}
                           onChange={e => this.onCheckboxChange(key, filter, e.target.checked)}

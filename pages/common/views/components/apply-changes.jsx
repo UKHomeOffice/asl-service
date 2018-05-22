@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { stringify } from 'qs';
-import { noop } from 'lodash';
+import { noop, omit } from 'lodash';
 
 const ApplyChanges = ({
   id,
@@ -13,12 +13,15 @@ const ApplyChanges = ({
   <Fragment>
     {
       type === 'link' && (
-        <a href={`?${stringify({ ...props })}`} onClick={e => { e.preventDefault(); onApply(); }}>{label}</a>
+        <a href={`?${stringify(omit(props, 'dispatch'))}`} onClick={e => { e.preventDefault(); onApply(); }}>{label}</a>
       )
     }
     {
       type === 'form' && (
-        <form id={id} action={`?${stringify({ ...props })}`} method="POST" onSubmit={e => { e.preventDefault(); onApply(); }}>{ children }</form>
+        <form id={id} onSubmit={e => { e.preventDefault(); onApply(); }}>
+          <input type="hidden" name="props" value={stringify(omit(props, 'dispatch'))} />
+          { children }
+        </form>
       )
     }
   </Fragment>

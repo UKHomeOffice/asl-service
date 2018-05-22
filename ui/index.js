@@ -35,11 +35,6 @@ module.exports = settings => {
   const staticrouter = express.Router();
   const router = express.Router();
 
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({
-    extended: true
-  }));
-
   app.set('trust proxy', true);
   app.set('view engine', 'jsx');
   app.set('views', [
