@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { map } from 'lodash';
 import OptionSelect, { CheckedOption } from 'govuk-react-components/components/option-select';
+import ApplyChanges from '../containers/apply-changes';
 import { getTitle } from '../../../../lib/utils';
 
 class Filters extends Component {
@@ -62,33 +63,42 @@ class Filters extends Component {
     return (
       <section className="filters">
         <h3>Filter by</h3>
-        <div className="filters grid-row">
-          {
-            map(filterSettings, ({ values, format }, key) =>
-              <div key={key} className="column-one-third">
-                <OptionSelect title={ getTitle(key, filterSettings[key]) }>
-                  {
-                    values.map((filter, index) =>
-                      <CheckedOption
-                        key={index}
-                        name={`${key}-${index}`}
-                        id={`${key}-${filter}`}
-                        value={filter}
-                        onChange={e => this.onCheckboxChange(key, filter, e.target.checked)}
-                        checked={!!this.isChecked(key, filter)}
-                      >
-                        { format ? format(filter) : filter }
-                      </CheckedOption>
-                    )
-                  }
-                </OptionSelect>
-              </div>
-            )
-          }
-        </div>
+        <ApplyChanges
+          id="apply-filters"
+          type="form"
+          onApply={() => this.emitChange()}
+        >
+          <div className="filters grid-row">
+            {
+              map(filterSettings, ({ values, format }, key) =>
+                <div key={key} className="column-one-third">
+                  <OptionSelect title={ getTitle(key, filterSettings[key]) }>
+                    {
+                      values.map((filter, index) =>
+                        <CheckedOption
+                          key={index}
+                          name={`${key}-${index}`}
+                          id={`${key}-${filter}`}
+                          value={filter}
+                          onChange={e => this.onCheckboxChange(key, filter, e.target.checked)}
+                          checked={!!this.isChecked(key, filter)}
+                        >
+                          { format ? format(filter) : filter }
+                        </CheckedOption>
+                      )
+                    }
+                  </OptionSelect>
+                </div>
+              )
+            }
+          </div>
+        </ApplyChanges>
         <p className="control-bar">
-          <button className="button" onClick={() => this.emitChange()}>Apply filters</button>
-          <a href="#" onClick={e => this.clearFilters(e)}>Clear filters</a>
+          <input type="submit" form="apply-filters" className="button" value="Apply filters"/>
+          <ApplyChanges
+            filters={{}}
+            onApply={() => this.clearFilters()}
+            label="Clear filters" />
         </p>
       </section>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { getTitle } from '../../../../lib/utils';
+import ApplyChanges from '../containers/apply-changes';
 
 const TableHeader = ({
   id,
@@ -16,10 +17,14 @@ const TableHeader = ({
     >
       {
         isSortable
-          ? <a href="#" onClick={(e) => {
-            e.preventDefault();
-            setSortColumn(id);
-          }}>{ getTitle(id, { title }) }</a>
+          ? <ApplyChanges
+            sort={{
+              column: id,
+              ascending: column === id ? !ascending : true
+            }}
+            onApply={() => setSortColumn(id)}
+            label={getTitle(id, { title })}
+          />
           : getTitle(id, { title })
       }
     </th>

@@ -2,6 +2,7 @@ require('../lib/register');
 
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const expressViews = require('express-react-views');
 const { MemoryStore } = require('express-session');
 const session = require('@lennym/redis-session');
@@ -33,6 +34,11 @@ module.exports = settings => {
   const app = express();
   const staticrouter = express.Router();
   const router = express.Router();
+
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
   app.set('trust proxy', true);
   app.set('view engine', 'jsx');

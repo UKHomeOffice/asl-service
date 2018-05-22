@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import TableHeader from 'views/components/datatable-header';
+import ApplyChanges from 'views/containers/apply-changes';
 
 describe('<TableHeader />', () => {
   test('renders a <th> element with a title-case id if only passed id', () => {
@@ -25,7 +26,7 @@ describe('<TableHeader />', () => {
     expect(wrapper.find('[aria-sort="none"]').length).toBe(1);
   });
 
-  test('adds an <a /> link as a child if sortable', () => {
+  test('adds an <ApplyChanges /> element as a child if sortable', () => {
     const wrapper = shallow(
       <TableHeader
         id="test"
@@ -33,7 +34,7 @@ describe('<TableHeader />', () => {
         ascending={true}
       />
     );
-    expect(wrapper.find('a').length).toBe(1);
+    expect(wrapper.find(ApplyChanges).length).toBe(1);
   });
 
   test('adds aria-sort="ascending" to the th if current column and ascending is true', () => {
@@ -58,7 +59,7 @@ describe('<TableHeader />', () => {
     expect(wrapper.find('[aria-sort="descending"]').length).toBe(1);
   });
 
-  test('calls setSortColumn with the current column id if link clicked', () => {
+  test('calls setSortColumn with the current column id if changes applied', () => {
     const mockSetSortColumn = jest.fn();
     const wrapper = shallow(
       <TableHeader
@@ -68,7 +69,7 @@ describe('<TableHeader />', () => {
         setSortColumn={mockSetSortColumn}
       />
     );
-    wrapper.find('a').simulate('click', { preventDefault: () => {} });
+    wrapper.find(ApplyChanges).prop('onApply')();
     expect(mockSetSortColumn.mock.calls[0][0]).toBe('test');
   });
 });
