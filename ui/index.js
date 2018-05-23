@@ -2,7 +2,6 @@ require('../lib/register');
 
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const expressViews = require('express-react-views');
 const { MemoryStore } = require('express-session');
 const session = require('@lennym/redis-session');
