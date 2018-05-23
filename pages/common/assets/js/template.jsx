@@ -15,6 +15,7 @@ const persistState = store => next => action => {
   switch (action.type) {
     case 'SET_SORT_COLUMN':
     case 'SET_FILTERS':
+    case 'SET_FITLER':
       const { filters, sort } = store.getState();
       const href = url.parse(window.location.href);
       href.search = stringify({ filters, sort });

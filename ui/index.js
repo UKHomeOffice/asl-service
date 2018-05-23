@@ -63,7 +63,7 @@ module.exports = settings => {
   if (settings.auth) {
     const keycloak = auth(Object.assign({ store: new MemoryStore() }, settings.auth));
     app.use(keycloak.middleware());
-    app.protect = rules => app.use(keycloak.protect(rules));
+    app.protect = rules => router.use(keycloak.protect(rules));
   }
 
   if (settings.api) {
