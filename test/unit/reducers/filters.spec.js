@@ -202,8 +202,8 @@ describe('rootReducer', () => {
         withContacts[3].contacts[2].name = 'Chosen Name';
         const schema = merge({}, state.schema, {
           contacts: {
-            accessor() {
-              return this.contacts.map(c => c.name);
+            accessor(row) {
+              return row.contacts.map(c => c.name);
             }
           }
         });

@@ -19,9 +19,7 @@ export default {
   },
   car: {
     show: true,
-    accessor() {
-      return get(this, 'car.year');
-    }
+    accessor: 'car.year'
   },
   animals: {
     show: true
