@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 import App from '../../common/views/app';
 import Diff from '../../common/views/containers/diff';
 import getFields from '../fields';
@@ -8,7 +9,8 @@ import { joinAcronyms } from '../../common/formatters';
 
 const formatters = {
   suitability: { format: joinAcronyms },
-  holding: { format: joinAcronyms }
+  holding: { format: joinAcronyms },
+  nacwo: { format: val => get(val, 'profile.name') }
 };
 
 const fields = getFields(formatters);

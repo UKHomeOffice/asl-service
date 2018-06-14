@@ -19,5 +19,12 @@ module.exports = {
     submit: 'Submit',
     edit: 'Edit',
     cancel: 'Cancel'
+  },
+  errors: {
+    heading: 'Please fix the following error',
+    headingPlural: 'Please fix the following errors',
+    form: {
+      unchanged: 'No changes have been made'
+    }
   }
 };

@@ -3,6 +3,7 @@ import { map, get } from 'lodash';
 import Input from 'govuk-react-components/components/forms/input-text';
 import RadioGroup from 'govuk-react-components/components/forms/radio-group';
 import Select from 'govuk-react-components/components/forms/select';
+import Snippet from '../containers/snippet';
 
 const fields = {
   inputText: ({ ...props }) => <Input { ...props } />,
@@ -14,6 +15,7 @@ const fields = {
 const Form = ({
   schema,
   item,
+  errors,
   applyLabel = 'Submit',
   onFieldChange
 }) => (
@@ -25,6 +27,7 @@ const Form = ({
           value: accessor ? get(item[key], accessor) : (item[key] || ''),
           label: key,
           name: key,
+          error: errors[key] && <Snippet>{`errors.${key}.${errors[key]}`}</Snippet>,
           onChange: e => onFieldChange(key, e.target.value),
           ...props
         })

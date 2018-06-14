@@ -1,30 +1,58 @@
 const { Router } = require('express');
-const { setItem } = require('../../../lib/actions');
-const { getEstablishment } = require('../../common/middleware');
-const { getPlace, setSchema } = require('../middleware');
-const update = require('./update');
+const { merge } = require('lodash');
+const { setItem, setSchema, setErrors } = require('../../../lib/actions');
+const form = require('./form');
+
 const confirm = require('./confirm');
 const success = require('./success');
+const schema = require('../schema');
+const mapSchema = require('../middleware/map-schema');
+const getEstablishment = require('../../common/middleware/get-establishment');
+const getNacwos = require('../helpers/get-nacwos');
 
 module.exports = settings => {
   const app = Router();
 
-  app.use(getEstablishment());
-  app.use(getPlace({ parseItem: item => ({ ...item, nacwo: item.nacwo && item.nacwo.id }) }));
+  app.use('/', form({
+    configure: mapSchema({ schema })
+  })({ model: 'place' }));
+
+  app.post('/', (req, res, next) => {
+    return res.redirect(`${req.baseUrl}/confirm`);
+  });
 
   app.get('/', (req, res, next) => {
-    if (req.session.data && req.session.data[req.place]) {
-      const { item } = res.store.getState();
-      res.store.dispatch(setItem({ ...item, ...req.session.data[req.place] }));
-    }
-    next();
+    const { values, schema, validationErrors } = req.form;
+    res.store.dispatch(setSchema(schema));
+    res.store.dispatch(setErrors(validationErrors));
+    getNacwos(req)
+      .then(nacwos => {
+        res.store.dispatch(setItem({
+          ...values,
+          nacwo: nacwos.find(n => n.id === values.nacwo)
+        }));
+      })
+      .then(() => next())
+      .catch(next);
   });
-  app.get('/', setSchema());
 
-  app.use('/confirm', confirm());
-  app.use('/success', success());
+  app.use('/confirm', confirm({
+    getValues: (req, res, next) => {
+      getNacwos(req)
+        .then(nacwos => {
+          merge(req.form.diff, {
+            nacwo: {
+              newValue: nacwos.find(n => n.id === req.form.diff.nacwo.newValue)
+            }
+          });
+        })
+        .then(() => next())
+        .catch(next);
+    },
+    populateStore: getEstablishment()
+  })({ model: 'place', schema }));
 
-  app.use('/', update());
+  app.use('/success', success({ model: 'place' }));
 
   return app;
 };

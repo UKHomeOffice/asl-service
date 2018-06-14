@@ -1,11 +1,12 @@
 const { Router } = require('express');
 
-module.exports = settings => {
+module.exports = ({ model }) => {
   const app = Router();
 
   app.get('/', (req, res, next) => {
-    if (req.session.data && req.session.data[req.place]) {
-      delete req.session.data[req.place];
+    const id = req[model];
+    if (req.session.form && req.session.form[id]) {
+      delete req.session.form[id];
     }
     next();
   });
