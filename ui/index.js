@@ -87,13 +87,7 @@ module.exports = settings => {
   });
 
   app.use(router);
-  /*
-  csv && app.use(generateCsv());
-  if (pdf) {
-    app.use(pdfRenderer(pdf));
-    app.use(generatePdf());
-  }
-*/
+
   app.use(sendResponse(settings));
   app.use(errorHandler());
 
