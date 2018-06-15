@@ -1,75 +1,58 @@
-import { can } from '../../../lib/permissions';
+const express = require('express');
+const can = require('../../../lib/auth/can');
+
+const server = tasks => {
+  const app = express();
+  app.use('/:task', (req, res) => {
+    if (tasks.includes(req.params.task)) {
+      return res.json({});
+    }
+    res.status(403).json({});
+  });
+
+  return new Promise((resolve, reject) => {
+    const _server = app.listen(err => {
+      return err ? reject(err) : resolve({
+        url: `http://127.0.0.1:${_server.address().port}`,
+        close: () => _server.close()
+      });
+    });
+  });
+};
 
 describe('can', () => {
-  let user;
 
-  beforeEach(() => {
-    user = {
-      get: jest.fn(),
-      is: jest.fn()
-    };
+  describe('without an endpoint configured', () => {
+
+    it('rejects all inputs with a 403', () => {
+      const perms = can();
+      return expect(perms('token', 'task')).rejects.toMatchObject({ status: 403 });
+    });
+
   });
 
-  test('Rejects with an error if task is unknown', () => {
-    const task = 'unknown.task';
-    const expected = 'Unknown task: unknown.task';
-    return expect(can(user, task))
-      .rejects.toThrow(expected);
+  describe('with an endpoint configured', () => {
+
+    let service;
+
+    beforeAll(async () => {
+      service = await server(['allowed']);
+    });
+
+    afterAll(async () => {
+      await service.close();
+    });
+
+    it('resolves allowed tasks', () => {
+      const perms = can(service.url);
+      return expect(perms('token', 'allowed')).resolves.toMatchObject({});
+    });
+
+    it('rejects not-allowed tasks', () => {
+      const perms = can(service.url);
+      return expect(perms('token', 'not-allowed')).rejects.toMatchObject({ status: 403 });
+    });
+
   });
 
-  test('Inspector can view all establishments', () => {
-    const task = 'establishment.list';
-    user.is.mockReturnValueOnce(true);
-    return can(user, task)
-      .then(authorised => {
-        expect(user.is).toBeCalledWith('inspector');
-        expect(authorised).toBe(true);
-      });
-  });
-
-  test('Inspector can view any establishment', () => {
-    const task = 'establishment.read';
-    const params = { establishment: '123' };
-    user.is.mockReturnValueOnce(true);
-    user.get.mockReturnValueOnce('321');
-    return can(user, task, params)
-      .then(authorised => {
-        expect(user.is).toBeCalledWith('inspector');
-        expect(authorised).toBe(true);
-      });
-  });
-
-  test('User cannot view all establishments', () => {
-    const task = 'establishment.list';
-    user.is.mockReturnValueOnce(false);
-    return can(user, task)
-      .then(authorised => {
-        expect(user.is).toBeCalledWith('inspector');
-        expect(authorised).toBe(false);
-      });
-  });
-
-  test('User cannot view an establishment if they are not associated', () => {
-    const task = 'establishment.read';
-    const params = { establishment: '123' };
-    user.is.mockReturnValueOnce(false);
-    user.get.mockReturnValueOnce('321');
-    return can(user, task, params)
-      .then(authorised => {
-        expect(user.is).toBeCalledWith('inspector');
-        expect(authorised).toBe(false);
-      });
-  });
-
-  test('User can view their own establishment', () => {
-    const task = 'establishment.read';
-    const params = { establishment: '123' };
-    user.is.mockReturnValueOnce(false);
-    user.get.mockReturnValueOnce('123');
-    return can(user, task, params)
-      .then(authorised => {
-        expect(user.is).toBeCalledWith('inspector');
-        expect(authorised).toBe(true);
-      });
-  });
 });
