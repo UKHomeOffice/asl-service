@@ -19,8 +19,6 @@ const logger = require('../lib/logger');
 const toolkitDir = path.dirname(require.resolve('govuk_frontend_toolkit/package.json'));
 const imagesDir = path.resolve(toolkitDir, './images');
 
-const commonContent = require('../pages/common/content');
-
 module.exports = settings => {
 
   settings = normalise(settings);
@@ -37,8 +35,7 @@ module.exports = settings => {
   app.set('trust proxy', true);
   app.set('view engine', 'jsx');
   app.set('views', [
-    settings.views,
-    path.resolve(__dirname, '../pages/common/views')
+    settings.views
   ]);
 
   app.engine('jsx', expressViews.createEngine({
@@ -52,8 +49,6 @@ module.exports = settings => {
   if (settings.assets) {
     app.use('/public', express.static(settings.assets));
   }
-
-  app.use('/public', express.static(path.resolve(__dirname, '../pages/common/dist')));
 
   app.use(logger(settings));
 
@@ -82,7 +77,7 @@ module.exports = settings => {
       name: req.user.get('name')
     };
     res.locals.static = res.locals.static || {};
-    res.locals.static.content = merge({}, commonContent, settings.content);
+    res.locals.static.content = merge({}, res.locals.static.content, settings.content);
     next();
   });
 
