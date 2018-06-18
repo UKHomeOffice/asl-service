@@ -1,4 +1,4 @@
-import UI from '../../ui';
+const UI = require('../../ui');
 
 describe('ui', () => {
 

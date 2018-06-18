@@ -1,15 +1,12 @@
 require('../lib/register');
 
+const { merge } = require('lodash');
 const express = require('express');
 const path = require('path');
 const expressViews = require('express-react-views');
 const { MemoryStore } = require('express-session');
 const session = require('@lennym/redis-session');
 const { assets } = require('govuk-react-components');
-
-const { combineReducers, createStore } = require('redux');
-const allReducers = require('../lib/reducers');
-const actions = require('../lib/actions');
 
 const sendResponse = require('../lib/send-response');
 const errorHandler = require('../lib/error-handler');
@@ -21,8 +18,6 @@ const logger = require('../lib/logger');
 
 const toolkitDir = path.dirname(require.resolve('govuk_frontend_toolkit/package.json'));
 const imagesDir = path.resolve(toolkitDir, './images');
-
-const commonContent = require('../pages/common/content');
 
 module.exports = settings => {
 
@@ -40,8 +35,7 @@ module.exports = settings => {
   app.set('trust proxy', true);
   app.set('view engine', 'jsx');
   app.set('views', [
-    settings.views,
-    path.resolve(__dirname, '../pages/common/views')
+    settings.views
   ]);
 
   app.engine('jsx', expressViews.createEngine({
@@ -55,8 +49,6 @@ module.exports = settings => {
   if (settings.assets) {
     app.use('/public', express.static(settings.assets));
   }
-
-  app.use('/public', express.static(path.resolve(__dirname, '../pages/common/dist')));
 
   app.use(logger(settings));
 
@@ -80,35 +72,17 @@ module.exports = settings => {
   }
 
   app.use((req, res, next) => {
-    res.locals.user = req.user;
-    next();
-  });
-
-  app.use((req, res, next) => {
-    res.store = createStore(combineReducers(allReducers), {
-      user: {
-        id: req.user.id,
-        name: req.user.get('name')
-      }
-    });
-    res.locals.store = res.store;
-    next();
-  });
-
-  app.use((req, res, next) => {
-    res.store.dispatch(actions.setContent(commonContent));
-    res.store.dispatch(actions.setContent(settings.content));
+    res.locals.user = {
+      id: req.user.id,
+      name: req.user.get('name')
+    };
+    res.locals.static = res.locals.static || {};
+    res.locals.static.content = merge({}, res.locals.static.content, settings.content);
     next();
   });
 
   app.use(router);
-  /*
-  csv && app.use(generateCsv());
-  if (pdf) {
-    app.use(pdfRenderer(pdf));
-    app.use(generatePdf());
-  }
-*/
+
   app.use(sendResponse(settings));
   app.use(errorHandler());
 

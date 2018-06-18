@@ -1,4 +1,4 @@
-import Api from '../../api';
+const Api = require('../../api');
 
 describe('api', () => {
 
