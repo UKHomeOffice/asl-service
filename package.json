@@ -3,7 +3,6 @@
   "version": "3.0.0",
   "description": "",
   "main": "index.js",
-  "style": "pages/common/assets/sass/style.scss",
   "scripts": {
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "eslint . --ext jsx,js",
