@@ -7,15 +7,7 @@
   "scripts": {
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "eslint . --ext jsx,js",
-    "test:unit": "jest",
-    "test:functional": "funkie --driver chromedriver wdio ./test/functional/config.js",
-    "test:functional:ci": "wdio ./test/functional/config.js",
-    "build": "npm run build:js && npm run build:css",
-    "build:js": "webpack",
-    "postbuild:js": "rm ./pages/**/dist/**/entry.js",
-    "prebuild:css": "mkdir -p ./pages/common/dist/css",
-    "build:css": "npm-sass ./pages/common/assets/sass/style.scss > ./pages/common/dist/css/app.css",
-    "prepublish": "npm run build"
+    "test:unit": "jest"
   },
   "repository": {
     "type": "git",
