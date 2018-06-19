@@ -35,7 +35,8 @@ module.exports = settings => {
   app.set('trust proxy', true);
   app.set('view engine', 'jsx');
   app.set('views', [
-    settings.views
+    settings.views,
+    path.resolve(__dirname, './views')
   ]);
 
   app.engine('jsx', expressViews.createEngine({
@@ -72,10 +73,12 @@ module.exports = settings => {
   }
 
   app.use((req, res, next) => {
-    res.locals.user = {
-      id: req.user.id,
-      name: req.user.get('name')
-    };
+    if (req.user) {
+      res.locals.user = {
+        id: req.user.id,
+        name: req.user.get('name')
+      };
+    }
     res.locals.static = res.locals.static || {};
     res.locals.static.content = merge({}, res.locals.static.content, settings.content);
     next();
@@ -84,7 +87,7 @@ module.exports = settings => {
   app.use(router);
 
   app.use(sendResponse(settings));
-  app.use(errorHandler());
+  app.use(errorHandler(settings));
 
   const _app = (...args) => app(...args);
 
