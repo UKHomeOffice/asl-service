@@ -11,16 +11,18 @@ const TEMPLATE_PATH = path.resolve(__dirname, './assets/js/template.jsx');
 const template = fs.readFileSync(TEMPLATE_PATH).toString();
 const STORE_PATH = path.resolve(__dirname, './assets/js/default-store');
 
-const normalise = (settings) => {
+const normalise = settings => {
   let store = STORE_PATH;
   const glob = './pages/**/views/*.jsx';
+  const ignore = ['./pages/common/**'];
+
   if (typeof settings === 'string') {
     try {
       store = require.resolve(`${settings}/lib/store`);
     } catch (e) {}
-    return { dir: settings, store, glob }
+    return { dir: settings, store, glob, ignore };
   }
-  return { store, glob, ...settings };
+  return Object.assign({ store, glob, ignore }, settings);
 };
 
 module.exports = dirs => {
@@ -31,7 +33,7 @@ module.exports = dirs => {
 
     const settings = normalise(project);
 
-    glob.sync(settings.glob, { ignore: ['./pages/common/**'], cwd: settings.dir, absolute: true })
+    glob.sync(settings.glob, { ignore: settings.ignore, cwd: settings.dir, absolute: true })
       .forEach(page => {
         const baseName = path.join(path.relative(settings.dir, page), '../..');
         const fileName = path.basename(page, path.extname(page));
