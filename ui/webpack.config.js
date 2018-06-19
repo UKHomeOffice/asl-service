@@ -11,25 +11,35 @@ const TEMPLATE_PATH = path.resolve(__dirname, './assets/js/template.jsx');
 const template = fs.readFileSync(TEMPLATE_PATH).toString();
 const STORE_PATH = path.resolve(__dirname, './assets/js/default-store');
 
+const normalise = (settings) => {
+  let store = STORE_PATH;
+  const glob = './pages/**/views/*.jsx';
+  if (typeof settings === 'string') {
+    try {
+      store = require.resolve(`${settings}/lib/store`);
+    } catch (e) {}
+    return { dir: settings, store, glob }
+  }
+  return { store, glob, ...settings };
+};
+
 module.exports = dirs => {
 
   dirs = [].concat(dirs);
 
-  const entry = dirs.reduce((all, cwd) => {
-    let store = STORE_PATH;
-    try {
-      store = require.resolve(`${cwd}/lib/store`);
-    } catch (e) {}
+  const entry = dirs.reduce((all, project) => {
 
-    glob.sync('./pages/**/views/*.jsx', { ignore: ['./pages/common/**'], cwd, absolute: true })
+    const settings = normalise(project);
+
+    glob.sync(settings.glob, { ignore: ['./pages/common/**'], cwd: settings.dir, absolute: true })
       .forEach(page => {
-        const baseName = path.join(path.relative(cwd, page), '../..');
+        const baseName = path.join(path.relative(settings.dir, page), '../..');
         const fileName = path.basename(page, path.extname(page));
-        const dir = path.resolve(cwd, '.tmp', baseName, fileName);
+        const dir = path.resolve(settings.dir, '.tmp', baseName, fileName);
         const file = path.resolve(dir, 'entry.js');
         const js = template
           .replace(/{{page}}/g, page)
-          .replace(/{{store}}/g, store);
+          .replace(/{{store}}/g, settings.store);
         mkdir.sync(dir);
         fs.writeFileSync(file, js);
         all[path.join(baseName, fileName)] = file;
