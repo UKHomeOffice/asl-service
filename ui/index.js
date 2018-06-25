@@ -92,6 +92,7 @@ module.exports = settings => {
   const _app = (...args) => app(...args);
 
   return Object.assign(_app, {
+    param: (...args) => router.param(...args),
     protect: (...args) => app.protect(...args),
     listen: (...args) => app.listen(...args),
     static: staticrouter,
