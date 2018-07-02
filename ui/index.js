@@ -81,6 +81,7 @@ module.exports = settings => {
     }
     res.locals.static = res.locals.static || {};
     res.locals.static.content = merge({}, res.locals.static.content, settings.content);
+    res.locals.static.urls = merge({}, settings.urls);
     next();
   });
 
