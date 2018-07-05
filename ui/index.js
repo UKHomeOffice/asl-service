@@ -1,12 +1,15 @@
 require('../lib/register');
 
-const { merge } = require('lodash');
+const { merge, set } = require('lodash');
 const express = require('express');
 const path = require('path');
+const uuid = require('uuid');
 const expressViews = require('express-react-views');
 const { MemoryStore } = require('express-session');
 const session = require('@lennym/redis-session');
 const { assets } = require('govuk-react-components');
+const helmet = require('helmet');
+const getContentSecurityPolicy = require('../lib/get-content-security-policy');
 
 const sendResponse = require('../lib/send-response');
 const errorHandler = require('../lib/error-handler');
@@ -73,6 +76,16 @@ module.exports = settings => {
   }
 
   app.use((req, res, next) => {
+    set(res.locals, 'static.nonce', uuid.v4());
+    return next();
+  });
+
+  app.use(helmet());
+  app.use(helmet.contentSecurityPolicy({
+    directives: getContentSecurityPolicy(settings)
+  }));
+
+  app.use((req, res, next) => {
     if (req.user) {
       res.locals.user = {
         id: req.user.id,
@@ -80,8 +93,8 @@ module.exports = settings => {
       };
     }
     res.locals.static = res.locals.static || {};
-    res.locals.static.content = merge({}, res.locals.static.content, settings.content);
-    res.locals.static.urls = merge({}, settings.urls);
+    set(res.locals, 'static.content', merge({}, res.locals.static.content, settings.content));
+    set(res.locals, 'static.urls', merge({}, settings.urls));
     next();
   });
 
