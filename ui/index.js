@@ -86,12 +86,7 @@ module.exports = settings => {
   }));
 
   app.use((req, res, next) => {
-    if (req.user) {
-      res.locals.user = {
-        id: req.user.id,
-        name: req.user.get('name')
-      };
-    }
+    res.locals.user = req.user || {};
     res.locals.static = res.locals.static || {};
     set(res.locals, 'static.content', merge({}, res.locals.static.content, settings.content));
     set(res.locals, 'static.urls', merge({}, settings.urls));
