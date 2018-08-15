@@ -52,10 +52,7 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-lennym": "^2.0.1",
-    "jest": "^23.1.0",
-    "jest-chain": "^1.0.3",
-    "supertest": "^3.1.0",
-    "supertest-session": "^3.3.0"
+    "jest": "^23.1.0"
   },
   "publishConfig": {
     "registry": "https://artifactory.digital.homeoffice.gov.uk/artifactory/api/npm/npm-virtual/"
