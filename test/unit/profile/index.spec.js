@@ -50,7 +50,7 @@ describe('cache profile loading in service/auth', () => {
       profile: {
         firstName: 'Someone',
         lastName: 'Else',
-        expiresAt: moment.utc(moment(new Date()).add(60, 'seconds')).valueOf()
+        expiresAt: moment.utc(moment().add(60, 'seconds')).valueOf()
       }
     };
 
@@ -68,7 +68,7 @@ describe('cache profile loading in service/auth', () => {
       profile: {
         firstName: 'Someone',
         lastName: 'Else',
-        expiresAt: moment.utc(moment(new Date()).subtract(660, 'seconds')).valueOf()
+        expiresAt: moment.utc(moment().subtract(660, 'seconds')).valueOf()
       }
     };
 
