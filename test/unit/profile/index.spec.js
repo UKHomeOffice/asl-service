@@ -24,35 +24,17 @@ const server = () => {
 };
 
 describe('cache profile loading in service/auth', () => {
-
-  const RealDate = Date;
-
-  function mockDate (isoDate) {
-    global.Date = class extends RealDate {
-      constructor () {
-        super();
-        return new RealDate(isoDate);
-      }
-    };
-  }
-
   let service;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     service = await server(['allowed']);
   });
 
-  afterAll(async () => {
+  afterEach(async () => {
     await service.close();
   });
 
-  afterEach(async () => {
-    service.stub.reset();
-    global.Date = RealDate;
-  });
-
   it('should call profile api and store result in session', () => {
-    mockDate(new Date());
     const session = {};
     return profile(service.url)('token', session)
       .then(() => {
@@ -64,14 +46,14 @@ describe('cache profile loading in service/auth', () => {
   });
 
   it('should not call profile api if a profile exists in the session', () => {
-    mockDate(new Date());
     const session = {
       profile: {
         firstName: 'Someone',
         lastName: 'Else',
-        expiresAt: moment.utc(moment(new Date())).valueOf()
+        expiresAt: moment.utc(moment(new Date()).add(60, 'seconds')).valueOf()
       }
     };
+
     return profile(service.url)('token', session)
       .then(() => {
         expect(service.stub.callCount).toEqual(0);
@@ -82,12 +64,11 @@ describe('cache profile loading in service/auth', () => {
   });
 
   it('should call profile api if a stale profile exists in the session', () => {
-    mockDate(new Date());
     const session = {
       profile: {
         firstName: 'Someone',
         lastName: 'Else',
-        expiresAt: moment.utc(moment(new Date()).subtract(2, 'hours')).valueOf()
+        expiresAt: moment.utc(moment(new Date()).subtract(660, 'seconds')).valueOf()
       }
     };
 
