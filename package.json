@@ -52,7 +52,8 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-lennym": "^2.0.1",
-    "jest": "^23.1.0"
+    "jest": "^23.1.0",
+    "sinon": "^6.1.5"
   },
   "publishConfig": {
     "registry": "https://artifactory.digital.homeoffice.gov.uk/artifactory/api/npm/npm-virtual/"
