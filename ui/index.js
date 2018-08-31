@@ -58,6 +58,9 @@ module.exports = settings => {
 
   if (settings.session) {
     app.use(session(settings.session));
+    app.use('/logout', (req, res, next) => {
+      req.session.destroy(() => next());
+    });
   }
   if (settings.auth) {
     const keycloak = auth(Object.assign({ store: new MemoryStore() }, settings.auth));
