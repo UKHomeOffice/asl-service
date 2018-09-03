@@ -50,11 +50,12 @@ describe('cache profile loading in service/auth', () => {
       profile: {
         firstName: 'Someone',
         lastName: 'Else',
+        userId: 'abc123',
         expiresAt: moment.utc(moment().add(60, 'seconds')).valueOf()
       }
     };
 
-    return profile(service.url)('token', session)
+    return profile(service.url)({ token: 'token', id: 'abc123' }, session)
       .then(() => {
         expect(service.stub.callCount).toEqual(0);
         expect(session).toHaveProperty('profile');
@@ -68,11 +69,31 @@ describe('cache profile loading in service/auth', () => {
       profile: {
         firstName: 'Someone',
         lastName: 'Else',
+        userId: 'abc123',
         expiresAt: moment.utc(moment().subtract(660, 'seconds')).valueOf()
       }
     };
 
-    return profile(service.url)('token', session)
+    return profile(service.url)({ token: 'token', id: 'abc123' }, session)
+      .then(() => {
+        expect(service.stub.callCount).toEqual(1);
+        expect(session).toHaveProperty('profile');
+        expect(session.profile.firstName).toEqual('First');
+        expect(session.profile.lastName).toEqual('Last');
+      });
+  });
+
+  it('should call profile api if session profile user id does not match logged in user', () => {
+    const session = {
+      profile: {
+        firstName: 'Someone',
+        lastName: 'Else',
+        userId: 'abc123',
+        expiresAt: moment.utc(moment().add(60, 'seconds')).valueOf()
+      }
+    };
+
+    return profile(service.url)({ token: 'token', id: 'def456' }, session)
       .then(() => {
         expect(service.stub.callCount).toEqual(1);
         expect(session).toHaveProperty('profile');
