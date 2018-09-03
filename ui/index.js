@@ -22,6 +22,8 @@ const logger = require('../lib/logger');
 const toolkitDir = path.dirname(require.resolve('govuk_frontend_toolkit/package.json'));
 const imagesDir = path.resolve(toolkitDir, './images');
 
+const { assets: homeOfficeAssets } = require('@ukhomeoffice/frontend-toolkit');
+
 module.exports = settings => {
 
   settings = normalise(settings);
@@ -53,6 +55,8 @@ module.exports = settings => {
   if (settings.assets) {
     app.use('/public', express.static(settings.assets));
   }
+
+  app.use('/ho', express.static(homeOfficeAssets));
 
   app.use(logger(settings));
 
