@@ -6,7 +6,8 @@ const path = require('path');
 const uuid = require('uuid');
 const expressViews = require('express-react-views');
 const { MemoryStore } = require('express-session');
-const { assets } = require('@ukhomeoffice/frontend-toolkit');
+const { assets } = require('govuk-react-components');
+const homeOffice = require('@ukhomeoffice/frontend-toolkit');
 const session = require('@lennym/redis-session');
 const helmet = require('helmet');
 const getContentSecurityPolicy = require('../lib/get-content-security-policy');
@@ -42,12 +43,13 @@ module.exports = settings => {
   }));
 
   app.use(staticrouter);
+  app.use(assets());
 
   if (settings.assets) {
-    app.use('/public', express.static(settings.assets));
+    app.use('/public/', express.static(settings.assets));
   }
 
-  app.use('/ho', express.static(assets));
+  app.use('/ho', express.static(homeOffice.assets));
 
   app.use(logger(settings));
 
