@@ -31,12 +31,6 @@ class HomeOffice extends React.Component {
 
         <body>
 
-          <div id="skiplink-container">
-            <div>
-              <a href={this.props.skipToContentTarget} className="skiplink">{ this.props.skipToContent }</a>
-            </div>
-          </div>
-
           <header role="banner" className={this.props.propositionHeader ? 'with-proposition' : ''}>
             <div className="font-ui wrapper-header">
               <div className="header-logo">
