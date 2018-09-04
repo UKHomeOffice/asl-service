@@ -6,23 +6,16 @@ const path = require('path');
 const uuid = require('uuid');
 const expressViews = require('express-react-views');
 const { MemoryStore } = require('express-session');
+const { assets } = require('@ukhomeoffice/frontend-toolkit');
 const session = require('@lennym/redis-session');
-const { assets } = require('govuk-react-components');
 const helmet = require('helmet');
 const getContentSecurityPolicy = require('../lib/get-content-security-policy');
-
 const sendResponse = require('../lib/send-response');
 const errorHandler = require('../lib/error-handler');
-
 const auth = require('../lib/auth');
 const api = require('../lib/api');
 const normalise = require('../lib/settings');
 const logger = require('../lib/logger');
-
-const toolkitDir = path.dirname(require.resolve('govuk_frontend_toolkit/package.json'));
-const imagesDir = path.resolve(toolkitDir, './images');
-
-const { assets: homeOfficeAssets } = require('@ukhomeoffice/frontend-toolkit');
 
 module.exports = settings => {
 
@@ -49,14 +42,12 @@ module.exports = settings => {
   }));
 
   app.use(staticrouter);
-  app.use(assets());
 
-  app.use('/govuk/images', express.static(imagesDir));
   if (settings.assets) {
     app.use('/public', express.static(settings.assets));
   }
 
-  app.use('/ho', express.static(homeOfficeAssets));
+  app.use('/ho', express.static(assets));
 
   app.use(logger(settings));
 

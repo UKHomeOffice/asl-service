@@ -1,24 +1,26 @@
 import React from 'react';
-import GovUK from 'govuk-react-components/components/layout';
+import HomeOffice from '../components/home-office';
 
 const Layout = ({
   Component,
   ...props
 }) => {
   return (
-    <GovUK
+    <HomeOffice
       {...props}
     >
-      <main className="main" id="content">
-        <div className="grid-row">
-          <div className="column-full">
-            <div id="page-component">
-              <Component {...props} />
+      <div className="govuk-width-container">
+        <main className="main govuk-main-wrapper" id="content">
+          <div className="govuk-grid-row">
+            <div className="govuk-grid-column-full">
+              <div id="page-component">
+                <Component {...props} />
+              </div>
             </div>
           </div>
-        </div>
-      </main>
-    </GovUK>
+        </main>
+      </div>
+    </HomeOffice>
   );
 };
 
