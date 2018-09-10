@@ -21,7 +21,6 @@
   "dependencies": {
     "@lennym/redis-session": "^1.0.4",
     "@ukhomeoffice/frontend-toolkit": "^1.0.3",
-    "babel-loader": "^7.1.4",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
@@ -32,7 +31,6 @@
     "express-session": "^1.15.6",
     "glob": "^7.1.2",
     "govuk-react-components": "^0.7.1",
-    "govuk_frontend_toolkit": "^7.5.0",
     "helmet": "^3.12.1",
     "helmet-csp": "^2.7.0",
     "keycloak-connect": "^3.4.3",
