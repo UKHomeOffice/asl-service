@@ -10,21 +10,12 @@ class HomeOffice extends React.Component {
           <meta charSet="utf-8" />
           <title>{ this.props.title || this.props.propositionHeader }</title>
 
-          <link rel="stylesheet" media="screen" href={`${this.props.assetPath}/stylesheets/govuk-template.css?0.23.0`}/>
-          <link rel="stylesheet" media="screen" href={`${this.props.assetPath}/stylesheets/fonts.css?0.23.0`}/>
           {
             this.props.stylesheets.map(file => (
               <link rel="stylesheet" media="screen" href={file} key={file} />
             ))
           }
-          <link rel="stylesheet" media="print" href={`${this.props.assetPath}/stylesheets/govuk-template-print.css?0.23.0`}/>
 
-          <link rel="shortcut icon" href={`${this.props.assetPath}/images/favicon.ico?0.23.0`} type="image/x-icon" />
-          <link rel="mask-icon" href={`${this.props.assetPath}/images/gov.uk_logotype_crown.svg?0.23.0`} color="#0b0c0c"/>
-          <link rel="apple-touch-icon" sizes="180x180" href={`${this.props.assetPath}/images/apple-touch-icon-180x180.png?0.23.0`}/>
-          <link rel="apple-touch-icon" sizes="167x167" href={`${this.props.assetPath}/images/apple-touch-icon-167x167.png?0.23.0`}/>
-          <link rel="apple-touch-icon" sizes="152x152" href={`${this.props.assetPath}/images/apple-touch-icon-152x152.png?0.23.0`}/>
-          <link rel="apple-touch-icon" href={`${this.props.assetPath}/images/apple-touch-icon.png?0.23.0`}/>
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
           <meta property="og:image" content={`${this.props.assetPath}/images/opengraph-image.png?0.23.0`}/>
         </head>
@@ -77,7 +68,6 @@ class HomeOffice extends React.Component {
 
           <div id="global-app-error" className="app-error hidden"></div>
 
-          <script src={`${this.props.assetPath}/javascripts/govuk-template.js?0.23.0`}></script>
           {
             this.props.scripts.map(file => (
               <script src={file} key={file}></script>
@@ -93,7 +83,7 @@ class HomeOffice extends React.Component {
 HomeOffice.defaultProps = {
   assetPath: '/govuk',
   hoAssetPath: '/ho',
-  stylesheets: ['/govuk/elements.css'],
+  stylesheets: [],
   scripts: [],
   homepageUrl: 'https://www.gov.uk',
   propositionHeaderLink: '/',
