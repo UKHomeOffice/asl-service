@@ -7,10 +7,13 @@ const server = () => {
   const app = express();
   const stub = sinon.stub().yields(null, null);
   app.use('/me', stub, (req, res) => {
-    return res.json({data: {
-      firstName: 'First',
-      lastName: 'Last'
-    }});
+    return res.json({
+      data: {
+        firstName: 'First',
+        lastName: 'Last'
+      },
+      meta: {}
+    });
   });
   return new Promise((resolve, reject) => {
     const _server = app.listen(err => {
