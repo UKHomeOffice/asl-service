@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PhaseBanner from './phase-banner';
 
 class HomeOffice extends React.Component {
 
@@ -21,6 +22,10 @@ class HomeOffice extends React.Component {
         </head>
 
         <body>
+
+          {
+            this.props.phaseBanner && <PhaseBanner {...this.props.phaseBanner} />
+          }
 
           <header role="banner" className={this.props.propositionHeader ? 'with-proposition' : ''}>
             <div className="font-ui wrapper-header">
@@ -67,6 +72,28 @@ class HomeOffice extends React.Component {
           </footer>
 
           <div id="global-app-error" className="app-error hidden"></div>
+
+          {
+            this.props.phaseBanner && <script nonce={this.props.nonce} dangerouslySetInnerHTML={{__html: `
+
+              function togglePhaseBanner() {
+                const phaseBanner = document.querySelector('.govuk-phase-banner');
+                const footerHeight = document.querySelector('#footer-withphase').offsetHeight || 50;
+
+                if (window.innerHeight + window.scrollY + footerHeight > document.body.clientHeight) {
+                  phaseBanner.style.display = 'none';
+                } else {
+                  phaseBanner.style.display = 'block';
+                }
+              }
+
+              document.addEventListener('DOMContentLoaded', function(event) {
+                togglePhaseBanner();
+                window.addEventListener('scroll', togglePhaseBanner);
+              });
+
+            `}} />
+          }
 
           {
             this.props.scripts.map(file => (
