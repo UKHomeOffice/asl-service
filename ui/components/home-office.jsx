@@ -76,7 +76,7 @@ class HomeOffice extends React.Component {
           {
             this.props.phaseBanner && <script nonce={this.props.nonce} dangerouslySetInnerHTML={{__html: `
 
-              function checkHeight() {
+              function togglePhaseBanner() {
                 const phaseBanner = document.getElementsByClassName('govuk-phase-banner')[0];
                 const footerHeight = document.getElementById('footer-withphase').offsetHeight || 50;
 
@@ -87,8 +87,9 @@ class HomeOffice extends React.Component {
                 }
               }
 
-              document.addEventListener("DOMContentLoaded", function(event) {
-                window.addEventListener('scroll', checkHeight);
+              document.addEventListener('DOMContentLoaded', function(event) {
+                togglePhaseBanner();
+                window.addEventListener('scroll', togglePhaseBanner);
               });
 
             `}} />
