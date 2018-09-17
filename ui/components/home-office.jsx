@@ -77,8 +77,8 @@ class HomeOffice extends React.Component {
             this.props.phaseBanner && <script nonce={this.props.nonce} dangerouslySetInnerHTML={{__html: `
 
               function togglePhaseBanner() {
-                const phaseBanner = document.getElementsByClassName('govuk-phase-banner')[0];
-                const footerHeight = document.getElementById('footer-withphase').offsetHeight || 50;
+                const phaseBanner = document.querySelector('.govuk-phase-banner');
+                const footerHeight = document.querySelector('#footer-withphase').offsetHeight || 50;
 
                 if (window.innerHeight + window.scrollY + footerHeight > document.body.clientHeight) {
                   phaseBanner.style.display = 'none';
