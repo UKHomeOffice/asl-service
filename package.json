@@ -30,7 +30,6 @@
     "express-react-views": "^0.10.5",
     "express-session": "^1.15.6",
     "glob": "^7.1.2",
-    "govuk-react-components": "^0.7.1",
     "helmet": "^3.12.1",
     "helmet-csp": "^2.7.0",
     "keycloak-connect": "^3.4.3",
