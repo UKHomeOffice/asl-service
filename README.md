@@ -1,6 +1,7 @@
 # asl-service
 
-Module for rapid bootstrapping of an express app for a govuk themed, react-based ui or api with logging, authentication and session handling configured as appropriate.
+Module for rapid bootstrapping of an express app for a Home Office design system themed, react-based ui or api with
+logging, authentication and session handling configured as appropriate.
 
 ## Usage
 
@@ -17,9 +18,10 @@ app.listen(port);
 
 #### Static middleware
 
-If you wish to mount middleware before the session and auth handlers in a UI app you can do so with `app.static.use` which will mount your handlers before any dynamic middlewares are mounted.
+If you wish to mount middleware before the session and auth handlers in a UI app you can do so with `app.static.use`
+which will mount your handlers before any dynamic middlewares are mounted.
 
-This is primarily expected to be used for css, js or iamge assets.
+This is primarily expected to be used for css, js or image assets.
 
 ### API
 
@@ -49,20 +51,24 @@ An example settings object looks like this:
 
 #### auth
 
-Both UI and API applications will mount keycloak authentication middlewares. This requires the following properties to be set:
+Both UI and API applications will mount keycloak authentication middlewares. This requires the following properties to
+be set:
 
 * `realm`
 * `url`
 * `client`
 * `secret`
 
-The values for these can be found in the `Installation` tab of your client's settings in the keycloak admin console. Select the `Keycloak OIDC JSON` option.
+The values for these can be found in the `Installation` tab of your client's settings in the keycloak admin console.
+Select the `Keycloak OIDC JSON` option.
 
-Once the auth middleware has been mounted, subsequent requests will have a `req.user` property with basic information about the logged in user.
+Once the auth middleware has been mounted, subsequent requests will have a `req.user` property with basic information
+about the logged in user.
 
 ##### User roles
 
-You can limit access to routes to particular user roles by either checking the user's role directly with `req.user.is('role')` or by protecting the routes with `app.protect('role')`.
+You can limit access to routes to particular user roles by either checking the user's role directly with
+`req.user.is('role')` or by protecting the routes with `app.protect('role')`.
 
 Examples:
 
