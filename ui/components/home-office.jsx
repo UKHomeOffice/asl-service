@@ -88,7 +88,7 @@ HomeOffice.defaultProps = {
   hoAssetPath: '/ho',
   stylesheets: [],
   scripts: [],
-  homepageUrl: 'https://www.gov.uk',
+  homepageUrl: '/',
   propositionHeaderLink: '/',
   logoLinkTitle: '',
   skipToContent: 'Skip to main content',
