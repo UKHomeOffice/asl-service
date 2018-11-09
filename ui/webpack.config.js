@@ -38,7 +38,7 @@ module.exports = dirs => {
         const baseName = path.join(path.relative(settings.dir, page), '../..');
         const fileName = path.basename(page, path.extname(page));
         const dir = path.resolve(settings.dir, '.tmp', baseName, fileName);
-        const file = path.resolve(dir, 'entry.js');
+        const file = path.resolve(dir, 'entry.jsx');
         const js = template
           .replace(/{{page}}/g, page)
           .replace(/{{store}}/g, settings.store);
@@ -63,7 +63,7 @@ module.exports = dirs => {
     module: {
       rules: [
         {
-          test: /\.jsx?/,
+          test: /\.jsx/,
           exclude: path => path.match(/node_modules/) && !path.match(/node_modules\/@asl/),
           loader: 'babel-loader'
         }
