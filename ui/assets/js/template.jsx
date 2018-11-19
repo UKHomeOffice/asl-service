@@ -3,12 +3,15 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
+import { Wrapper } from '@asl/components';
 import Component from '{{page}}';
 import store from '{{store}}';
 
 hydrate(
   <Provider store={store}>
-    <Component />
+    <Wrapper>
+      <Component />
+    </Wrapper>
   </Provider>,
   document.getElementById('page-component')
 );
