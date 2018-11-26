@@ -91,6 +91,14 @@ module.exports = settings => {
     next();
   });
 
+  app.use((req, res, next) => {
+    req.breadcrumb = crumb => {
+      req.breadcrumbs = req.breadcrumbs || [];
+      req.breadcrumbs = [ ...req.breadcrumbs, crumb ];
+    };
+    next();
+  });
+
   app.use(sendResponse(settings));
 
   app.use(router);
