@@ -91,9 +91,15 @@ module.exports = settings => {
     next();
   });
 
+  app.use(sendResponse(settings));
+
   app.use(router);
 
-  app.use(sendResponse(settings));
+  // if the response has not yet been sent then send it
+  app.use((req, res) => {
+    res.sendResponse();
+  });
+
   app.use(errorHandler(settings));
 
   const _app = (...args) => app(...args);
