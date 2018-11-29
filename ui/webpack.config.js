@@ -9,20 +9,15 @@ const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development
 
 const TEMPLATE_PATH = path.resolve(__dirname, './assets/js/template.jsx');
 const template = fs.readFileSync(TEMPLATE_PATH).toString();
-const STORE_PATH = path.resolve(__dirname, './assets/js/default-store');
 
 const normalise = settings => {
-  let store = STORE_PATH;
   const glob = './pages/**/views/*.jsx';
   const ignore = ['./pages/common/**'];
 
   if (typeof settings === 'string') {
-    try {
-      store = require.resolve(`${settings}/lib/store`);
-    } catch (e) {}
-    return { dir: settings, store, glob, ignore };
+    return { dir: settings, glob, ignore };
   }
-  return Object.assign({ store, glob, ignore }, settings);
+  return Object.assign({ glob, ignore }, settings);
 };
 
 module.exports = dirs => {
@@ -41,7 +36,6 @@ module.exports = dirs => {
         const file = path.resolve(dir, 'entry.jsx');
         const js = template
           .replace(/{{page}}/g, page)
-          .replace(/{{store}}/g, settings.store);
         mkdir.sync(dir);
         fs.writeFileSync(file, js);
         all[path.join(baseName, fileName)] = file;
