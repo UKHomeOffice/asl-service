@@ -35,7 +35,7 @@ module.exports = dirs => {
         const dir = path.resolve(settings.dir, '.tmp', baseName, fileName);
         const file = path.resolve(dir, 'entry.jsx');
         const js = template
-          .replace(/{{page}}/g, page)
+          .replace(/{{page}}/g, page);
         mkdir.sync(dir);
         fs.writeFileSync(file, js);
         all[path.join(baseName, fileName)] = file;
