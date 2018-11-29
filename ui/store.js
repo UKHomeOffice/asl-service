@@ -1,8 +1,8 @@
 const url = require('url');
-const { applyMiddleware, createStore, combineReducers } = require('redux');
+const { applyMiddleware, createStore } = require('redux');
 const thunk = require('redux-thunk').default;
-const allReducers = require('./reducers');
-const queryStringFromState = require('@asl/components/src/utils').queryStringFromState;
+const rootReducer = require('./reducers');
+const { queryStringFromState } = require('@asl/components/src/utils');
 
 const persistState = store => next => action => {
   const result = next(action);
@@ -25,5 +25,4 @@ if (process.env.NODE_ENV === 'development') {
   middleware.push(logger);
 }
 
-const rootReducer = combineReducers(allReducers);
 module.exports = createStore(rootReducer, window.INITIAL_STATE, applyMiddleware(...middleware));
