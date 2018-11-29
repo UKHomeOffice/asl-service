@@ -5,7 +5,7 @@ import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Wrapper } from '@asl/components';
 import Component from '{{page}}';
-import store from '{{store}}';
+import store from '@asl/service/ui/store';
 
 hydrate(
   <Provider store={store}>
