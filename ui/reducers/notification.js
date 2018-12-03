@@ -1,14 +1,13 @@
 const INITIAL_STATE = {
   message: null,
-  type: null
+  type: null,
+  timeout: null
 };
 
-const notificationReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
+const notificationReducer = (state = INITIAL_STATE, { type, notification }) => {
+  switch (type) {
     case 'SHOW_MESSAGE':
-      return { message: action.message, type: action.type || 'alert' };
-    case 'SHOW_ERROR':
-      return { message: action.message, type: 'error' };
+      return { ...notification };
     case 'HIDE_MESSAGE':
       return INITIAL_STATE;
   }
