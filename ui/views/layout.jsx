@@ -1,27 +1,13 @@
 import React from 'react';
-import HomeOffice from '../components/home-office';
+import Layout from './base';
 
-const Layout = ({
+const Index = ({
   Component,
   ...props
-}) => {
-  return (
-    <HomeOffice
-      {...props}
-    >
-      <div className="govuk-width-container">
-        <main className="main govuk-main-wrapper" id="content">
-          <div className="govuk-grid-row">
-            <div className="govuk-grid-column-full">
-              <div id="page-component">
-                <Component {...props} />
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-    </HomeOffice>
-  );
-};
+}) => (
+  <Layout { ...props }>
+    <Component { ...props } />
+  </Layout>
+);
 
-module.exports = Layout;
+export default Index;
