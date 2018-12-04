@@ -1,9 +1,9 @@
-const UI = require('../../ui');
+const { router } = require('../../ui');
 
 describe('ui', () => {
 
   test('can initialise without error', () => {
-    expect(() => UI({})).not.toThrow();
+    expect(() => router({})).not.toThrow();
   });
 
 });
