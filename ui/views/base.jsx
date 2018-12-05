@@ -30,7 +30,7 @@ const Layout = ({
 }) => {
   const {
     content: {
-      siteTitle = 'Research and testing with animals',
+      siteTitle = 'Research and testing using animals',
       ...content
     } = {},
     urls,
