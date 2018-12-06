@@ -17,6 +17,7 @@ const api = require('../lib/api');
 const normalise = require('../lib/settings');
 const logger = require('../lib/logger');
 const routeBuilder = require('../lib/middleware/route-builder');
+const notifications = require('../lib/middleware/notifications');
 
 module.exports = settings => {
 
@@ -93,6 +94,8 @@ module.exports = settings => {
     set(res.locals, 'static.urls', merge({}, settings.urls));
     next();
   });
+
+  app.use(notifications());
 
   app.use((req, res, next) => {
     req.breadcrumb = crumb => {
