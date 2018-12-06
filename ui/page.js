@@ -2,6 +2,7 @@ const { merge } = require('lodash');
 const path = require('path');
 const findRoot = require('find-root');
 const { Router } = require('express');
+const notifications = require('../lib/middleware/notifications');
 
 const lookup = (...args) => {
   if (!args.length) {
@@ -74,13 +75,7 @@ module.exports = ({
 
   app.all(paths, locals);
 
-  app.use((req, res, next) => {
-    if (req.session.notification) {
-      res.locals.notification = req.session.notification;
-      delete req.session.notification;
-    }
-    next();
-  });
+  app.use(notifications());
 
   return app;
 };
