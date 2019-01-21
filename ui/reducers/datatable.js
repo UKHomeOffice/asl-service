@@ -8,6 +8,8 @@ const INITIAL_STATE = {
   isFetching: false
 };
 
+const progress = (state = null) => state;
+
 const data = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'REQUEST_ITEMS':
@@ -31,6 +33,7 @@ const data = (state = INITIAL_STATE, action) => {
 };
 
 module.exports = combineReducers({
+  progress,
   filters,
   sort,
   pagination,
