@@ -57,7 +57,7 @@ module.exports = dirs => {
     module: {
       rules: [
         {
-          test: /\.jsx/,
+          test: /\.js(x)?/,
           exclude: path => path.match(/node_modules/) && !path.match(/node_modules\/@asl/),
           loader: 'babel-loader'
         }
