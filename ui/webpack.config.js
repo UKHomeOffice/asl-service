@@ -58,7 +58,16 @@ module.exports = dirs => {
       rules: [
         {
           test: /\.js(x)?/,
-          exclude: path => path.match(/node_modules/) && !path.match(/node_modules\/@asl/),
+          exclude: path => {
+            const parts = path.split('/');
+            const notASL = parts
+              // get the name of every immediate  child directory of node_modules in the path
+              .map((dir, i) => dir === 'node_modules' && parts[i + 1])
+              // are any of them not @asl?
+              .some(dir => dir !== '@asl');
+            // if any are *not* @asl then exclude from babel
+            return notASL;
+          },
           loader: 'babel-loader'
         }
       ]
