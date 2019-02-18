@@ -1,9 +1,10 @@
 const Api = require('../../api');
+const assert = require('assert');
 
 describe('api', () => {
 
-  test('can initialise without error', () => {
-    expect(() => Api({})).not.toThrow();
+  it('can initialise without error', () => {
+    assert.doesNotThrow(() => Api({}));
   });
 
 });

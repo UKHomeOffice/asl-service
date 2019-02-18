@@ -2,6 +2,7 @@ const express = require('express');
 const moment = require('moment');
 const sinon = require('sinon');
 const profile = require('../../../lib/auth/profile');
+const assert = require('assert');
 
 const server = () => {
   const app = express();
@@ -41,10 +42,10 @@ describe('cache profile loading in service/auth', () => {
     const session = {};
     return profile(service.url)('token', session)
       .then(() => {
-        expect(service.stub.callCount).toEqual(1);
-        expect(session).toHaveProperty('profile');
-        expect(session.profile.firstName).toEqual('First');
-        expect(session.profile.lastName).toEqual('Last');
+        assert.deepEqual(service.stub.callCount, 1);
+        assert.ok(session.profile);
+        assert.deepEqual(session.profile.firstName, 'First');
+        assert.deepEqual(session.profile.lastName, 'Last');
       });
   });
 
@@ -60,10 +61,10 @@ describe('cache profile loading in service/auth', () => {
 
     return profile(service.url)({ token: 'token', id: 'abc123' }, session)
       .then(() => {
-        expect(service.stub.callCount).toEqual(0);
-        expect(session).toHaveProperty('profile');
-        expect(session.profile.firstName).toEqual('Someone');
-        expect(session.profile.lastName).toEqual('Else');
+        assert.deepEqual(service.stub.callCount, 0);
+        assert.ok(session.profile);
+        assert.deepEqual(session.profile.firstName, 'Someone');
+        assert.deepEqual(session.profile.lastName, 'Else');
       });
   });
 
@@ -79,10 +80,10 @@ describe('cache profile loading in service/auth', () => {
 
     return profile(service.url)({ token: 'token', id: 'abc123' }, session)
       .then(() => {
-        expect(service.stub.callCount).toEqual(1);
-        expect(session).toHaveProperty('profile');
-        expect(session.profile.firstName).toEqual('First');
-        expect(session.profile.lastName).toEqual('Last');
+        assert.deepEqual(service.stub.callCount, 1);
+        assert.ok(session.profile);
+        assert.deepEqual(session.profile.firstName, 'First');
+        assert.deepEqual(session.profile.lastName, 'Last');
       });
   });
 
@@ -98,10 +99,10 @@ describe('cache profile loading in service/auth', () => {
 
     return profile(service.url)({ token: 'token', id: 'def456' }, session)
       .then(() => {
-        expect(service.stub.callCount).toEqual(1);
-        expect(session).toHaveProperty('profile');
-        expect(session.profile.firstName).toEqual('First');
-        expect(session.profile.lastName).toEqual('Last');
+        assert.deepEqual(service.stub.callCount, 1);
+        assert.ok(session.profile);
+        assert.deepEqual(session.profile.firstName, 'First');
+        assert.deepEqual(session.profile.lastName, 'Last');
       });
   });
 

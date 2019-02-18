@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "eslint . --ext jsx,js",
-    "test:unit": "jest"
+    "test:unit": "mocha ./test/unit --recursive --exit"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,8 @@
     "@asl/components": "^3.5.1",
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@lennym/redis-session": "^1.0.4",
     "@ukhomeoffice/frontend-toolkit": "^2.1.2",
@@ -37,6 +39,7 @@
     "keycloak-connect": "^4.5.0",
     "lodash": "^4.17.5",
     "mkdirp": "^0.5.1",
+    "mocha": "^5.2.0",
     "moment": "^2.22.2",
     "morgan": "^1.9.0",
     "mustache": "^2.3.2",
@@ -54,7 +57,6 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-lennym": "^2.0.1",
-    "jest": "^23.1.0",
     "sinon": "^6.1.5"
   },
   "publishConfig": {
