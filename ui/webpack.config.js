@@ -59,7 +59,27 @@ module.exports = dirs => {
         {
           test: /\.js(x)?/,
           exclude: path => path.match(/node_modules/) && !path.match(/node_modules\/@asl/),
-          loader: 'babel-loader'
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-react',
+                [
+                  '@babel/preset-env',
+                  {
+                    useBuiltIns: 'entry',
+                    targets: {
+                      ie: 11
+                    }
+                  }
+                ]
+              ],
+              plugins: [
+                '@babel/plugin-proposal-object-rest-spread',
+                'transform-class-properties'
+              ]
+            }
+          }
         }
       ]
     },
