@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const mkdir = require('mkdirp');
+const babelrc = require('../.babelrc.json');
 
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
@@ -61,24 +62,7 @@ module.exports = dirs => {
           exclude: path => path.match(/node_modules/) && !path.match(/node_modules\/@asl/),
           use: {
             loader: 'babel-loader',
-            options: {
-              presets: [
-                '@babel/preset-react',
-                [
-                  '@babel/preset-env',
-                  {
-                    useBuiltIns: 'entry',
-                    targets: {
-                      ie: 11
-                    }
-                  }
-                ]
-              ],
-              plugins: [
-                '@babel/plugin-proposal-object-rest-spread',
-                'transform-class-properties'
-              ]
-            }
+            options: babelrc
           }
         }
       ]
