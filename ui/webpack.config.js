@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const mkdir = require('mkdirp');
+const babelrc = require('../.babelrc.json');
 
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
@@ -59,7 +60,10 @@ module.exports = dirs => {
         {
           test: /\.js(x)?/,
           exclude: path => path.match(/node_modules/) && !path.match(/node_modules\/@asl/),
-          loader: 'babel-loader'
+          use: {
+            loader: 'babel-loader',
+            options: babelrc
+          }
         }
       ]
     },

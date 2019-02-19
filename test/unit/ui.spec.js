@@ -1,9 +1,10 @@
 const { router } = require('../../ui');
+const assert = require('assert');
 
 describe('ui', () => {
 
-  test('can initialise without error', () => {
-    expect(() => router({})).not.toThrow();
+  it('can initialise without error', () => {
+    assert.doesNotThrow(() => router({}));
   });
 
 });

@@ -1,5 +1,6 @@
 const express = require('express');
 const can = require('../../../lib/auth/can');
+const assert = require('assert');
 
 const server = tasks => {
   const app = express();
@@ -26,7 +27,11 @@ describe('can', () => {
 
     it('rejects all inputs with a 403', () => {
       const perms = can();
-      return expect(perms('token', 'task')).rejects.toMatchObject({ status: 403 });
+      return Promise.resolve()
+        .then(() => perms('token', 'task'))
+        .catch(response => {
+          assert.deepEqual(response, { status: 403 });
+        });
     });
 
   });
@@ -35,22 +40,30 @@ describe('can', () => {
 
     let service;
 
-    beforeAll(async () => {
+    before(async () => {
       service = await server(['allowed']);
     });
 
-    afterAll(async () => {
+    after(async () => {
       await service.close();
     });
 
     it('resolves allowed tasks', () => {
       const perms = can(service.url);
-      return expect(perms('token', 'allowed')).resolves.toMatchObject({});
+      return Promise.resolve()
+        .then(() => perms('token', 'allowed'))
+        .then(response => {
+          assert.deepEqual(response.status, 200);
+        });
     });
 
     it('rejects not-allowed tasks', () => {
       const perms = can(service.url);
-      return expect(perms('token', 'not-allowed')).rejects.toMatchObject({ status: 403 });
+      return Promise.resolve()
+        .then(() => perms('token', 'not-allowed'))
+        .catch(response => {
+          assert.deepEqual(response, { status: 403 });
+        });
     });
 
   });
