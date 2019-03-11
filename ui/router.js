@@ -18,6 +18,7 @@ const normalise = require('../lib/settings');
 const logger = require('../lib/logger');
 const routeBuilder = require('../lib/middleware/route-builder');
 const notifications = require('../lib/middleware/notifications');
+const cacheControl = require('../lib/middleware/cache-control');
 
 module.exports = settings => {
 
@@ -51,6 +52,7 @@ module.exports = settings => {
 
   app.use('/ho', express.static(homeOffice.assets));
 
+  app.use(cacheControl(settings));
   app.use(logger(settings));
 
   if (settings.session) {
