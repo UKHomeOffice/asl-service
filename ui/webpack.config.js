@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const mkdir = require('mkdirp');
+const TerserPlugin = require('terser-webpack-plugin');
 const babelrc = require('../.babelrc.json');
 
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
@@ -68,6 +69,12 @@ module.exports = dirs => {
       ]
     },
     optimization: {
+      minimizer: [
+        new TerserPlugin({
+          parallel: true,
+          cache: true
+        })
+      ],
       splitChunks: {
         cacheGroups: {
           commons: {
