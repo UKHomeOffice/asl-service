@@ -49,6 +49,7 @@ module.exports = settings => {
   if (settings.assets) {
     app.use('/public', express.static(settings.assets));
   }
+  app.get('/favicon.ico', (req, res) => res.sendFile(path.resolve(__dirname, './assets/images/favicon.png')));
 
   app.use('/ho', express.static(homeOffice.assets));
 
