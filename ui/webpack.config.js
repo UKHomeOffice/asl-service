@@ -71,7 +71,7 @@ module.exports = dirs => {
     optimization: {
       minimizer: [
         new TerserPlugin({
-          parallel: true,
+          parallel: false,
           cache: true
         })
       ],
@@ -80,7 +80,7 @@ module.exports = dirs => {
           commons: {
             name: 'common',
             chunks: 'initial',
-            minChunks: Object.keys(entry).length
+            minChunks: Math.ceil(Object.keys(entry).length / 2)
           }
         }
       }
