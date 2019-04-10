@@ -30,6 +30,10 @@ module.exports = dirs => {
 
     const settings = normalise(project);
 
+    // this glob looks up files in either a js or view directory within a page.
+    // if a js directory is found we want to use this as the client side code
+    // rather than the jsx view. Reduce right consumes the array from right to left
+    // resulting in the js/*.js overwriting the jsx if present.
     return glob.sync(settings.glob, { ignore: settings.ignore, cwd: settings.dir, absolute: true })
       .reduceRight((pages, page) => {
         const extension = path.extname(page);
