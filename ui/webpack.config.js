@@ -13,7 +13,7 @@ const TEMPLATE_PATH = path.resolve(__dirname, './assets/js/template.jsx');
 const template = fs.readFileSync(TEMPLATE_PATH).toString();
 
 const normalise = settings => {
-  const glob = './pages/**/views/*.jsx';
+  const glob = './pages/**/+(js|views)/+(*.js|*.jsx)';
   const ignore = ['./pages/common/**'];
 
   if (typeof settings === 'string') {
@@ -30,19 +30,26 @@ module.exports = dirs => {
 
     const settings = normalise(project);
 
-    glob.sync(settings.glob, { ignore: settings.ignore, cwd: settings.dir, absolute: true })
-      .forEach(page => {
+    return glob.sync(settings.glob, { ignore: settings.ignore, cwd: settings.dir, absolute: true })
+      .reduceRight((pages, page) => {
+        const extension = path.extname(page);
         const baseName = path.join(path.relative(settings.dir, page), '../..');
-        const fileName = path.basename(page, path.extname(page));
+        const fileName = path.basename(page, extension);
+        const name = path.join(baseName, fileName);
+        if (extension !== '.jsx') {
+          return { ...pages, [name]: page };
+        }
         const dir = path.resolve(settings.dir, '.tmp', baseName, fileName);
         const file = path.resolve(dir, 'entry.jsx');
         const js = template
           .replace(/{{page}}/g, page);
         mkdir.sync(dir);
         fs.writeFileSync(file, js);
-        all[path.join(baseName, fileName)] = file;
-      });
-    return all;
+        return {
+          ...pages,
+          [name]: file
+        };
+      }, all);
   }, {});
 
   return {
