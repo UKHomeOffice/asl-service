@@ -16,6 +16,7 @@ const auth = require('../lib/auth');
 const api = require('../lib/api');
 const normalise = require('../lib/settings');
 const logger = require('../lib/logger');
+const healthcheck = require('../lib/healthcheck');
 const routeBuilder = require('../lib/middleware/route-builder');
 const notifications = require('../lib/middleware/notifications');
 const cacheControl = require('../lib/middleware/cache-control');
@@ -43,6 +44,8 @@ module.exports = settings => {
   app.engine('jsx', expressViews.createEngine({
     transformViews: false
   }));
+
+  app.get('/healthcheck', healthcheck(settings));
 
   app.use(staticrouter);
 
