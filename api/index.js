@@ -11,6 +11,10 @@ module.exports = settings => {
   settings = normalise(settings);
   const app = express();
 
+  app.get('/healthcheck', (req, res) => {
+    res.json({ status: 'ok' });
+  });
+
   app.use(cacheControl(settings));
   app.use(logger(settings));
 
