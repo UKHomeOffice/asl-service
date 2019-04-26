@@ -5,15 +5,14 @@ const auth = require('../lib/auth');
 const normalise = require('../lib/settings');
 const logger = require('../lib/logger');
 const workflow = require('../lib/workflow');
+const healthcheck = require('../lib/healthcheck');
 const cacheControl = require('../lib/middleware/cache-control');
 
 module.exports = settings => {
   settings = normalise(settings);
   const app = express();
 
-  app.get('/healthcheck', (req, res) => {
-    res.json({ status: 'ok' });
-  });
+  app.use('/healthcheck', healthcheck());
 
   app.use(cacheControl(settings));
   app.use(logger(settings));

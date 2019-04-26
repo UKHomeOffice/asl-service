@@ -45,7 +45,6 @@ module.exports = settings => {
     transformViews: false
   }));
 
-
   app.use(staticrouter);
 
   if (settings.assets) {
@@ -64,7 +63,7 @@ module.exports = settings => {
     });
   }
 
-  app.get('/healthcheck', healthcheck(settings));
+  app.use('/healthcheck', healthcheck(settings));
 
   app.use(logger(settings));
 
