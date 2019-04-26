@@ -45,7 +45,6 @@ module.exports = settings => {
     transformViews: false
   }));
 
-  app.get('/healthcheck', healthcheck(settings));
 
   app.use(staticrouter);
 
@@ -57,7 +56,6 @@ module.exports = settings => {
   app.use('/ho', express.static(homeOffice.assets));
 
   app.use(cacheControl(settings));
-  app.use(logger(settings));
 
   if (settings.session) {
     app.use(session(settings.session));
@@ -65,6 +63,11 @@ module.exports = settings => {
       req.session.destroy(() => next());
     });
   }
+
+  app.get('/healthcheck', healthcheck(settings));
+
+  app.use(logger(settings));
+
   if (settings.auth) {
     const keycloak = auth(Object.assign({ store: new MemoryStore() }, settings.auth));
     app.use(keycloak.middleware());
