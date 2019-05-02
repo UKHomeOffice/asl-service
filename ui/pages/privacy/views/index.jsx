@@ -99,31 +99,33 @@ Contact the Data Protection Officer (DPO) if you:
 * think that your personal data has been misused or mishandled
 
 Data Protection Officer
+
 [DPO@homeoffice.gov.uk](mailto:DPO@homeoffice.gov.uk)
-Home Office
-2 Marsham Street
-London,
-SW1P 4DF
+
+Home Office<br>
+2 Marsham Street<br>
+London,<br>
+SW1P 4DF<br>
 
 You can also make a complaint to the Information Commissioner, who is an independent regulator.
 
 [casework@ico.org.uk](mailto:casework@ico.org.uk)
 
-Telephone: 0303 123 1113
-Textphone: 01625 545860
+Telephone: 0303 123 1113<br>
+Textphone: 01625 545860<br>
 Monday to Friday, 9am to 4:30pm
 
 [Find out about call charges](https://www.gov.uk/call-charges)
 
-Information Commissioner's Office
-Wycliffe House
-Water Lane
-Wilmslow
-Cheshire
+Information Commissioner's Office<br>
+Wycliffe House<br>
+Water Lane<br>
+Wilmslow<br>
+Cheshire<br>
 SK9 5AF
 
 Last updated 17 May 2018`;
 
 export default () => {
-  return <ReactMarkdown>{ content }</ReactMarkdown>;
+  return <ReactMarkdown escapeHtml={false}>{ content }</ReactMarkdown>;
 };
