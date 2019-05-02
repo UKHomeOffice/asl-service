@@ -21,6 +21,8 @@ const routeBuilder = require('../lib/middleware/route-builder');
 const notifications = require('../lib/middleware/notifications');
 const cacheControl = require('../lib/middleware/cache-control');
 
+const privacy = require('./pages/privacy');
+
 module.exports = settings => {
 
   settings = normalise(settings);
@@ -114,6 +116,8 @@ module.exports = settings => {
   });
 
   app.use(sendResponse(settings));
+
+  app.use('/privacy', privacy());
 
   app.use(router);
 

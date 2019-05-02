@@ -54,18 +54,22 @@ class HomeOffice extends React.Component {
 
           {this.props.children}
 
-          <footer role="contentinfo" id="footer-withphase">
-            <div className="govuk-width-container">
-              <div className="govuk-grid-row">
-                <div className="govuk-grid-column-full">
-                  <div className="open-government-licence">
-                    <p>
-                      <a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
-                       - All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated
-                    </p>
+          <footer role="contentinfo">
+            <div className="wrapper-footer">
+              <p>
+                <a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+              </p>
+              {
+                !!this.props.footerLinks.length && (
+                  <div className="footer-menu">
+                    <ul>
+                      {
+                        this.props.footerLinks.map(link => <li key={link.href}><a href={link.href}>{link.label}</a></li>)
+                      }
+                    </ul>
                   </div>
-                </div>
-              </div>
+                )
+              }
             </div>
           </footer>
 

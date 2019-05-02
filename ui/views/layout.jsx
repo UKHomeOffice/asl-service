@@ -5,7 +5,7 @@ const Index = ({
   Component,
   ...props
 }) => (
-  <Layout { ...props }>
+  <Layout footerLinks={[{ label: 'Privacy notice', href: '/privacy' }]} { ...props }>
     <Component { ...props } />
   </Layout>
 );
