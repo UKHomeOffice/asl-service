@@ -25,6 +25,7 @@ const Layout = ({
   scripts = [],
   user,
   crumbs,
+  footerLinks,
   static: staticContent = {},
   ...props
 }) => {
@@ -41,7 +42,7 @@ const Layout = ({
   const wrap = !error;
   const store = wrap
     ? createStore(rootReducer, {
-      ...omit(props, ['settings', '_locals', 'cache']),
+      ...omit(props, ['footerLinks', 'settings', '_locals', 'cache']),
       static: { ...rest, content, urls }
     })
     : {};
@@ -55,6 +56,7 @@ const Layout = ({
       scripts={scripts}
       headerContent={<StatusBar user={user} />}
       nonce={nonce}
+      footerLinks={footerLinks}
       phaseBanner={{
         phase: 'beta',
         feedbackUrl: '/feedback'
