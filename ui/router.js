@@ -22,6 +22,7 @@ const notifications = require('../lib/middleware/notifications');
 const cacheControl = require('../lib/middleware/cache-control');
 
 const privacy = require('./pages/privacy');
+const ErrorComponent = require('./views/error');
 
 module.exports = settings => {
 
@@ -126,7 +127,10 @@ module.exports = settings => {
     res.sendResponse();
   });
 
-  app.use(errorHandler(settings));
+  app.use(errorHandler({
+    ...settings,
+    template: ErrorComponent
+  }));
 
   const _app = (...args) => app(...args);
 
