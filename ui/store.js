@@ -25,4 +25,4 @@ if (process.env.NODE_ENV === 'development') {
   middleware.push(logger);
 }
 
-module.exports = createStore(rootReducer, JSON.parse(window.atob(window.INITIAL_STATE)), applyMiddleware(...middleware));
+module.exports = createStore(rootReducer, window.INITIAL_STATE, applyMiddleware(...middleware));

@@ -76,7 +76,10 @@ const Layout = ({
         </main>
       </div>
       {
-        wrap && <script nonce={nonce} dangerouslySetInnerHTML={{__html: `window.INITIAL_STATE='${base64.encode(JSON.stringify(store.getState()))}';`}} />
+        wrap && <script nonce={nonce} dangerouslySetInnerHTML={{__html: `
+          function decode(str) { return JSON.parse(window.atob(str)); }
+          window.INITIAL_STATE=decode('${base64.encode(JSON.stringify(store.getState()))}');
+        `}} />
       }
     </HomeOffice>
   );
