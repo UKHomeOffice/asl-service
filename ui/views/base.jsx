@@ -1,8 +1,8 @@
 import React from 'react';
 import omit from 'lodash/omit';
-import striptags from 'striptags';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import base64 from 'base-64';
 import HomeOffice from '../components/home-office';
 import rootReducer from '../reducers';
 import {
@@ -18,13 +18,6 @@ const renderChildren = (children, wrap) => {
     return <Wrapper>{ children }</Wrapper>;
   }
   return children;
-};
-
-const encodeEntities = (key, value) => {
-  if (typeof value === 'string') {
-    return striptags(value);
-  }
-  return value;
 };
 
 const Layout = ({
@@ -83,7 +76,7 @@ const Layout = ({
         </main>
       </div>
       {
-        wrap && <script nonce={nonce} dangerouslySetInnerHTML={{__html: `window.INITIAL_STATE=${JSON.stringify(store.getState(), encodeEntities)};`}} />
+        wrap && <script nonce={nonce} dangerouslySetInnerHTML={{__html: `window.INITIAL_STATE='${base64.encode(JSON.stringify(store.getState()))}';`}} />
       }
     </HomeOffice>
   );
