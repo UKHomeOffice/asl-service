@@ -28,6 +28,7 @@
     "@lennym/redis-session": "^1.0.4",
     "@ukhomeoffice/frontend-toolkit": "^2.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "base-64": "^0.1.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.2",
     "express-react-views": "^0.11.0",
@@ -52,7 +53,6 @@
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "striptags": "^3.1.1",
     "terser-webpack-plugin": "^1.2.3",
     "uuid": "^3.3.2",
     "winston": "^3.2.1"
