@@ -2,7 +2,6 @@ import React from 'react';
 import omit from 'lodash/omit';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import base64 from 'base-64';
 import HomeOffice from '../components/home-office';
 import rootReducer from '../reducers';
 import {
@@ -78,7 +77,7 @@ const Layout = ({
       {
         wrap && <script nonce={nonce} dangerouslySetInnerHTML={{__html: `
           function decode(str) { return JSON.parse(window.atob(str)); }
-          window.INITIAL_STATE=decode('${base64.encode(JSON.stringify(store.getState()))}');
+          window.INITIAL_STATE=decode('${Buffer.from(JSON.stringify(store.getState()), 'utf8').toString('base64')}');
         `}} />
       }
     </HomeOffice>
