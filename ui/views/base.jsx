@@ -75,8 +75,11 @@ const Layout = ({
         </main>
       </div>
       {
+        wrap && <script src="/public/js/common/base64.js" />
+      }
+      {
         wrap && <script nonce={nonce} dangerouslySetInnerHTML={{__html: `
-          function decode(str) { return JSON.parse(window.atob(str)); }
+          function decode(str) { return JSON.parse(window.Base64.decode(str)); }
           window.INITIAL_STATE=decode('${Buffer.from(JSON.stringify(store.getState()), 'utf8').toString('base64')}');
         `}} />
       }
