@@ -36,6 +36,7 @@
     "glob": "^7.1.2",
     "helmet": "^3.12.1",
     "helmet-csp": "^2.7.0",
+    "js-base64": "^2.5.1",
     "keycloak-connect": "^4.5.0",
     "lodash": "^4.17.11",
     "mkdirp": "^0.5.1",

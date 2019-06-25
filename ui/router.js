@@ -24,6 +24,8 @@ const cacheControl = require('../lib/middleware/cache-control');
 const privacy = require('./pages/privacy');
 const ErrorComponent = require('./views/error');
 
+const base64 = require.resolve('js-base64');
+
 module.exports = settings => {
 
   settings = normalise(settings);
@@ -51,6 +53,7 @@ module.exports = settings => {
   app.use(staticrouter);
 
   if (settings.assets) {
+    app.get('/public/js/common/base64.js', (req, res) => res.sendFile(base64));
     app.use('/public', express.static(settings.assets));
   }
   app.get('/favicon.ico', (req, res) => res.sendFile(path.resolve(__dirname, './assets/images/favicon.png')));
