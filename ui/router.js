@@ -79,6 +79,8 @@ module.exports = settings => {
     app.protect = rules => router.use(keycloak.protect(rules));
   }
 
+  app.use('/keepalive', (req, res) => res.json({}));
+
   if (settings.api) {
     app.use((req, res, next) => {
       const headers = req.user && {
