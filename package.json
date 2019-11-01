@@ -47,7 +47,7 @@
     "qs": "^6.5.2",
     "r2": "^2.0.1",
     "react": "^16.9.0",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.4.2",
     "react-markdown": "^4.0.8",
     "react-redux": "^7.1.0",
     "redux": "^4.0.0",
