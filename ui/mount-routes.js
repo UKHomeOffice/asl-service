@@ -1,7 +1,7 @@
 const permissions = require('../lib/middleware/permissions');
 const { isFunction } = require('lodash');
 
-function mountRoutes({ app, routes, settings, before, after }) {
+function mountRoutes({ app, routes, settings }) {
   Object.keys(routes).forEach(key => {
     const route = routes[key];
 
@@ -31,12 +31,12 @@ function mountRoutes({ app, routes, settings, before, after }) {
       }
     }
 
-    if (before) {
-      middleware.unshift(before);
+    if (route.before) {
+      middleware.unshift(route.before);
     }
 
-    if (after) {
-      middleware.push(after);
+    if (route.after) {
+      middleware.push(route.after);
     }
 
     const args = [middleware];
