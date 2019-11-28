@@ -7,6 +7,7 @@ const logger = require('../lib/logger');
 const workflow = require('../lib/workflow');
 const healthcheck = require('../lib/healthcheck');
 const cacheControl = require('../lib/middleware/cache-control');
+const requestLogger = require('../lib/middleware/log-requests');
 
 module.exports = settings => {
   settings = normalise(settings);
@@ -28,6 +29,10 @@ module.exports = settings => {
   }
 
   app.use(bodyParser.json({ limit: '5mb' }));
+
+  if (settings.logRequests) {
+    app.use(requestLogger(settings.logRequests));
+  }
 
   return app;
 };
