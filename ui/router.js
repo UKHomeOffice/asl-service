@@ -1,6 +1,7 @@
 require('../lib/register');
 
 const { merge, set } = require('lodash');
+const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 const uuid = require('uuid');
@@ -20,6 +21,7 @@ const healthcheck = require('../lib/healthcheck');
 const routeBuilder = require('../lib/middleware/route-builder');
 const notifications = require('../lib/middleware/notifications');
 const cacheControl = require('../lib/middleware/cache-control');
+const ClientError = require('../errors/client-error');
 
 const privacy = require('./pages/privacy');
 const ErrorComponent = require('./views/error');
@@ -80,6 +82,10 @@ module.exports = settings => {
   }
 
   app.use('/keepalive', (req, res) => res.json({}));
+
+  app.post('/error', bodyParser.json(), (req, res, next) => {
+    return next(new ClientError(req.body.message, req.body));
+  });
 
   if (settings.api) {
     app.use((req, res, next) => {
