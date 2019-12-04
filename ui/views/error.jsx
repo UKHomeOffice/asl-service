@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-export default ({ error }) => {
+export default ({ error, url }) => {
   switch (error.status) {
     case 403:
       return <Fragment>
@@ -13,6 +13,7 @@ export default ({ error }) => {
         {
           error.status > 499 && error.stack && <pre>{ error.stack }</pre>
         }
+        <p><a href={url}>Try again</a></p>
       </Fragment>;
   }
 };
