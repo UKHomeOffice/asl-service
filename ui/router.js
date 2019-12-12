@@ -84,7 +84,7 @@ module.exports = settings => {
   app.use('/keepalive', (req, res) => res.json({}));
 
   app.post('/error', bodyParser.json(), (req, res, next) => {
-    return next(new ClientError(req.body.message, req.body));
+    return next(new ClientError(req.body.message, { ...req.body, userAgent: req.get('user-agent') }));
   });
 
   if (settings.api) {
