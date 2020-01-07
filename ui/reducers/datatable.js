@@ -37,5 +37,6 @@ module.exports = combineReducers({
   filters,
   sort,
   pagination,
-  data
+  data,
+  schema: (state = {}) => state
 });
