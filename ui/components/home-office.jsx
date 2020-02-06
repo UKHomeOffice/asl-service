@@ -56,21 +56,45 @@ class HomeOffice extends React.Component {
 
           <footer role="contentinfo">
             <div className="wrapper-footer">
-              <p>
-                <a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
-              </p>
+
               {
-                !!this.props.footerLinks.length && (
+                this.props.footerLinks.length > 0 && (
                   <div className="footer-menu">
-                    <ul>
-                      {
-                        this.props.footerLinks.map(link => <li key={link.href}><a href={link.href}>{link.label}</a></li>)
-                      }
-                    </ul>
+                    {
+                      this.props.footerLinks.map(section => (
+
+                        <section key={section.sectionName}>
+                          <h3>{section.sectionName}</h3>
+                          {
+                            section.links.length > 0 && (
+                              <ul>
+                                {
+                                  section.links.map(link => (
+                                    <li key={link.href}><a href={link.href}>{link.label}</a></li>
+                                  ))
+                                }
+                              </ul>
+                            )
+                          }
+                        </section>
+
+                      ))
+                    }
                   </div>
                 )
               }
+
+              <ul className="default-links">
+                <li>
+                  <a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+                </li>
+                <li>
+                  <a href="/privacy">Privacy notice</a>
+                </li>
+              </ul>
+
             </div>
+
           </footer>
 
           <div id="global-app-error" className="app-error hidden"></div>
