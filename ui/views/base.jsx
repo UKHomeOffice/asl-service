@@ -6,18 +6,10 @@ import HomeOffice from '../components/home-office';
 import rootReducer from '../reducers';
 import {
   Breadcrumbs,
-  StatusBar,
-  Wrapper
+  StatusBar
 } from '@asl/components';
 
 const Wrapped = ({ store, children }) => <Provider store={store}>{ children }</Provider>;
-
-const renderChildren = (children, wrap) => {
-  if (wrap) {
-    return <Wrapper>{ children }</Wrapper>;
-  }
-  return children;
-};
 
 const Layout = ({
   error,
@@ -68,7 +60,7 @@ const Layout = ({
           <div className="govuk-grid-row">
             <div className="govuk-grid-column-full">
               <div id="page-component">
-                { renderChildren(children, wrap) }
+                { children }
               </div>
             </div>
           </div>
