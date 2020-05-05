@@ -23,6 +23,7 @@ const Layout = ({
   error,
   children,
   scripts = [],
+  stylesheets = [],
   user,
   crumbs,
   footerLinks,
@@ -52,7 +53,7 @@ const Layout = ({
   const page = (
     <HomeOffice
       propositionHeader={siteTitle}
-      stylesheets={['/public/css/app.css']}
+      stylesheets={['/public/css/app.css'].concat(stylesheets)}
       scripts={scripts}
       headerContent={<StatusBar user={user} />}
       nonce={nonce}

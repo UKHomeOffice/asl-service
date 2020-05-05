@@ -110,10 +110,20 @@ module.exports = settings => {
   }));
 
   app.use((req, res, next) => {
+    if (req.query.widescreen) {
+      set(req.session, 'widescreen', true);
+    }
+    next();
+  });
+
+  app.use((req, res, next) => {
     res.locals.user = req.user || {};
     res.locals.static = res.locals.static || {};
     set(res.locals, 'static.content', merge({}, res.locals.static.content, settings.content));
     set(res.locals, 'static.urls', merge({}, settings.urls));
+    if (req.session.widescreen) {
+      set(res.locals, 'stylesheets', '/public/css/wide.css');
+    }
     next();
   });
 
