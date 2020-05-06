@@ -58,6 +58,7 @@ module.exports = settings => {
     app.get('/public/js/common/base64.js', (req, res) => res.sendFile(base64));
     app.use('/public', express.static(settings.assets));
   }
+  app.get('/public/css/wide.css', (req, res) => res.sendFile(path.resolve(__dirname, './assets/css/wide.css')));
   app.get('/favicon.ico', (req, res) => res.sendFile(path.resolve(__dirname, './assets/images/favicon.png')));
 
   app.use('/ho', express.static(homeOffice.assets));
