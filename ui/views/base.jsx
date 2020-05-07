@@ -60,7 +60,7 @@ const Layout = ({
       footerLinks={footerLinks}
       phaseBanner={{
         phase: 'beta',
-        content: 'Your opinions make things better. Share them in [this short survey](https://www.homeofficesurveys.homeoffice.gov.uk/s/D6XIF5/).'
+        content: <span>Your opinions make things better. Share them in <a href="https://www.homeofficesurveys.homeoffice.gov.uk/s/D6XIF5/" target="_blank">this short survey</a>.</span>
       }}
     >
       <div className="govuk-width-container">

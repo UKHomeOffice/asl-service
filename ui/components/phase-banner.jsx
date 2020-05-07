@@ -1,19 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import ReactMarkdown from 'react-markdown';
 
 class PhaseBanner extends React.Component {
 
   renderContent() {
     if (this.props.content) {
-      return (
-        <ReactMarkdown
-          renderers={{ root: Fragment, paragraph: ({ children }) => <span>{ children }</span> }}
-          linkTarget="_blank"
-        >
-          {this.props.content}
-        </ReactMarkdown>
-      );
+      return this.props.content;
     } else if (this.props.feedbackUrl) {
       return <span className="govuk-phase-banner__text">
         This is a new service – your <a href={this.props.feedbackUrl} className="govuk-link">feedback</a> will help us to improve it.
