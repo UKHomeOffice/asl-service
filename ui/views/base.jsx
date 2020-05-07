@@ -28,6 +28,7 @@ const Layout = ({
   crumbs,
   footerLinks,
   static: staticContent = {},
+  phaseBannerSurvey,
   ...props
 }) => {
   const {
@@ -60,7 +61,8 @@ const Layout = ({
       footerLinks={footerLinks}
       phaseBanner={{
         phase: 'beta',
-        content: <span>Your opinions make things better. Share them in <a href="https://www.homeofficesurveys.homeoffice.gov.uk/s/D6XIF5/" target="_blank" rel="noopener noreferrer">this short survey</a>.</span>
+        feedbackUrl: '/feedback',
+        content: phaseBannerSurvey && <span>Your opinions make things better. Share them in <a href="https://www.homeofficesurveys.homeoffice.gov.uk/s/D6XIF5/" target="_blank" rel="noopener noreferrer">this short survey</a>.</span>
       }}
     >
       <div className="govuk-width-container">
