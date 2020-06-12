@@ -17,6 +17,7 @@ const auth = require('../lib/auth');
 const api = require('../lib/api');
 const normalise = require('../lib/settings');
 const logger = require('../lib/logger');
+const apicache = require('../lib/cache');
 const healthcheck = require('../lib/healthcheck');
 const routeBuilder = require('../lib/middleware/route-builder');
 const notifications = require('../lib/middleware/notifications');
@@ -93,7 +94,8 @@ module.exports = settings => {
       const headers = req.user && {
         Authorization: `bearer ${req.user.access_token}`
       };
-      req.api = api(settings.api, { headers });
+      req.session.cache = req.session.cache || {};
+      req.api = api(settings.api, { headers }, apicache(req.session.cache));
       next();
     });
   }
