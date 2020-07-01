@@ -64,7 +64,7 @@
     "eslint": "^4.19.1",
     "eslint-config-lennym": "^2.0.1",
     "sinon": "^6.1.5",
-    "webpack": "^4.29.6"
+    "webpack": "^4.43.0"
   },
   "publishConfig": {
     "registry": "https://artifactory.digital.homeoffice.gov.uk/artifactory/api/npm/npm-virtual/"
