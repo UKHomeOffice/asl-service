@@ -6,7 +6,7 @@ class HomeOffice extends React.Component {
 
   render() {
     return (
-      <html>
+      <html lang="en">
         <head>
           <meta charSet="utf-8" />
           <title>{ this.props.title || this.props.propositionHeader }</title>
@@ -27,7 +27,7 @@ class HomeOffice extends React.Component {
             <div className="font-ui wrapper-header">
               <div className="header-logo">
                 <a href={ this.props.homepageUrl } title={ this.props.logoLinkTitle } id="logo" className="content">
-                  <img src={`${this.props.hoAssetPath}/images/ho-logo.svg`} />
+                  <img src={`${this.props.hoAssetPath}/images/ho-logo.svg`} alt="Home Office logo" />
                 </a>
               </div>
               {
