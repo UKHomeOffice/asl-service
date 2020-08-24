@@ -30,7 +30,7 @@ describe('can', () => {
       return Promise.resolve()
         .then(() => perms('token', 'task'))
         .catch(response => {
-          assert.deepEqual(response, { status: 403 });
+          assert.deepEqual(response.status, 403);
         });
     });
 
@@ -62,7 +62,7 @@ describe('can', () => {
       return Promise.resolve()
         .then(() => perms('token', 'not-allowed'))
         .catch(response => {
-          assert.deepEqual(response, { status: 403 });
+          assert.deepEqual(response.status, 403);
         });
     });
 
