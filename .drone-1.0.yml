@@ -21,7 +21,7 @@ steps:
         from_secret: npm_auth_token
     commands:
       - npm test
-  - name: audit
+  - name: publish
     image: node:12
     environment:
       NPM_AUTH_USERNAME:
