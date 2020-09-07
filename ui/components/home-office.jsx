@@ -91,6 +91,9 @@ class HomeOffice extends React.Component {
                 <li>
                   <a href="/privacy">Privacy notice</a>
                 </li>
+                <li>
+                  <a href="/contact-us">Contact us</a>
+                </li>
               </ul>
 
             </div>
