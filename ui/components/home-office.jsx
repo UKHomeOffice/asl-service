@@ -91,6 +91,12 @@ class HomeOffice extends React.Component {
                 <li>
                   <a href="/privacy">Privacy notice</a>
                 </li>
+                {
+                  this.props.contactUsLink &&
+                    <li>
+                      <a href="/contact-us">Contact us</a>
+                    </li>
+                }
               </ul>
 
             </div>
@@ -122,6 +128,7 @@ HomeOffice.defaultProps = {
   skipToContent: 'Skip to main content',
   skipToContentTarget: '#content',
   footerLinks: [],
+  contactUsLink: false,
   globalHeaderText: 'GOV.UK'
 };
 
@@ -146,7 +153,8 @@ HomeOffice.propTypes = {
       href: PropTypes.string,
       label: PropTypes.string
     })
-  )
+  ),
+  contactUsLink: PropTypes.bool
 };
 
 export default HomeOffice;

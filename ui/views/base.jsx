@@ -27,6 +27,7 @@ const Layout = ({
   user,
   crumbs,
   footerLinks,
+  contactUsLink,
   static: staticContent = {},
   phaseBannerSurvey,
   ...props
@@ -59,6 +60,7 @@ const Layout = ({
       headerContent={<StatusBar user={user} />}
       nonce={nonce}
       footerLinks={footerLinks}
+      contactUsLink={contactUsLink}
       phaseBanner={{
         phase: 'beta',
         feedbackUrl: '/feedback',
