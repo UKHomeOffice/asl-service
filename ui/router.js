@@ -24,6 +24,7 @@ const cacheControl = require('../lib/middleware/cache-control');
 const ClientError = require('../errors/client-error');
 
 const privacy = require('./pages/privacy');
+const accessibility = require('./pages/accessibility');
 const ErrorComponent = require('./views/error');
 
 const base64 = require.resolve('js-base64');
@@ -131,6 +132,7 @@ module.exports = settings => {
   app.use(sendResponse(settings));
 
   app.use('/privacy', privacy());
+  app.use('/accessibility', accessibility());
 
   app.use(router);
 
