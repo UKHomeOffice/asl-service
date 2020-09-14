@@ -92,7 +92,7 @@ class HomeOffice extends React.Component {
                   <a href="/privacy">Privacy notice</a>
                 </li>
                 <li>
-                  <a href="/accessibility">Accessibility</a>
+                  <a href="/accessibility">Accessibility statement</a>
                 </li>
                 {
                   this.props.contactUsLink &&
