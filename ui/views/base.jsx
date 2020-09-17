@@ -54,6 +54,7 @@ const Layout = ({
   }
   const page = (
     <HomeOffice
+      title={props.pageTitle ? `${props.pageTitle} - ${siteTitle}` : siteTitle}
       propositionHeader={siteTitle}
       stylesheets={['/public/css/app.css'].concat(stylesheets)}
       scripts={scripts}
