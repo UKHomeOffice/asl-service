@@ -68,6 +68,7 @@ module.exports = ({
         .filter(Boolean);
       res.locals.static.allowedActions = allowedActions;
     }
+    res.locals.pageTitle = res.locals.static.content.pageTitle;
     res.template = pages[req.path].template;
     return next();
   };
