@@ -24,6 +24,7 @@ class HomeOffice extends React.Component {
         <body>
 
           <header role="banner" className={this.props.propositionHeader ? 'with-proposition' : ''}>
+            <a href={this.props.skipToContentTarget} className="govuk-skip-link">{this.props.skipToContent}</a>
             <div className="font-ui wrapper-header">
               <div className="header-logo">
                 <a href={ this.props.homepageUrl } title={ this.props.logoLinkTitle } id="logo" className="content">
