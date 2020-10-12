@@ -27,7 +27,7 @@ module.exports = settings => {
     app.use(workflow(settings.workflow));
   }
 
-  app.use(bodyParser.json({ limit: '5mb' }));
+  app.use(bodyParser.json({ limit: settings.bodySizeLimit || '50mb' }));
 
   return app;
 };
