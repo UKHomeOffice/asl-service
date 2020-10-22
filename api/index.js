@@ -12,7 +12,7 @@ module.exports = settings => {
   settings = normalise(settings);
   const app = express();
 
-  app.use('/healthcheck', healthcheck());
+  app.use('/healthcheck', healthcheck(settings));
 
   app.use(cacheControl(settings));
   app.use(logger(settings));
