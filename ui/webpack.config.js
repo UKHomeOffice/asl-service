@@ -82,8 +82,7 @@ module.exports = dirs => {
     optimization: {
       minimizer: [
         new TerserPlugin({
-          parallel: false,
-          cache: true
+          parallel: false
         })
       ],
       splitChunks: {
