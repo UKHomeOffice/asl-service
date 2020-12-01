@@ -124,7 +124,9 @@ Wilmslow<br>
 Cheshire<br>
 SK9 5AF
 
-Last updated 17 May 2018`;
+Last updated 17 May 2018
+
+Last reviewed 1st December 2020`;
 
 export default () => {
   return <ReactMarkdown escapeHtml={false}>{ content }</ReactMarkdown>;
