@@ -25,7 +25,7 @@
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "@lennym/redis-session": "^1.0.4",
+    "@lennym/redis-session": "^2.0.1",
     "@ukhomeoffice/frontend-toolkit": "^2.13.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-require-ignore": "^0.1.1",
