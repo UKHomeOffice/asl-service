@@ -93,6 +93,9 @@ class HomeOffice extends React.Component {
                   <a href="/privacy">Privacy notice</a>
                 </li>
                 <li>
+                  <a href="/cookies">Cookie policy</a>
+                </li>
+                <li>
                   <a href="/accessibility">Accessibility statement</a>
                 </li>
                 {
