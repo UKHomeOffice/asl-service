@@ -65,7 +65,7 @@ const Layout = ({
       phaseBanner={{
         phase: 'beta',
         feedbackUrl: '/feedback',
-        content: phaseBannerSurvey && <span>Your opinions make things better. Share them in <a href="https://www.homeofficesurveys.homeoffice.gov.uk/s/D6XIF5/" target="_blank" rel="noopener noreferrer">this short survey</a>.</span>
+        ...props.phaseBanner
       }}
     >
       <div className="govuk-width-container">
