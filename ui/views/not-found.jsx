@@ -10,7 +10,7 @@ export default ({ isAsruUser }) => {
       <p><strong>You don’t have permission to view the page</strong></p>
 
       { isAsruUser
-        ? <p>Contact an ASRU admin for help.</p>
+        ? <p>Contact <a href="mailto:aspelqueries@homeoffice.gov.uk">aspelqueries@homeoffice.gov.uk</a> for help.</p>
         : <Fragment>
           <p>To protect people’s data, we restrict who can view people and licences at your establishment. Contact an admin for help.</p>
           <p><strong>A person has left the establishment</strong></p>
