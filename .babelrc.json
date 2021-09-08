@@ -5,6 +5,7 @@
       "@babel/preset-env",
       {
         "useBuiltIns": "entry",
+        "corejs": "^3.17.2",
         "targets": {
           "ie": 11
         }
