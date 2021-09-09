@@ -11,6 +11,7 @@ steps:
       NPM_AUTH_TOKEN:
         from_secret: npm_auth_token
     commands:
+      - npm --version
       - npm ci
   - name: test
     image: node:14
