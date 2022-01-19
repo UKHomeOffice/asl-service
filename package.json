@@ -27,6 +27,7 @@
     "@babel/register": "^7.0.0",
     "@lennym/redis-session": "^2.1.0",
     "@ukhomeoffice/frontend-toolkit": "^2.13.0",
+    "aws-sdk": "^2.1059.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-require-ignore": "^0.1.1",
     "body-parser": "^1.18.3",
@@ -62,7 +63,7 @@
   },
   "devDependencies": {
     "eslint": "^4.19.1",
-    "eslint-config-lennym": "^2.0.1",
+    "eslint-config-lennym": "^2.3.0",
     "mocha": "^8.2.0",
     "sinon": "^6.1.5",
     "webpack": "^4.43.0"
