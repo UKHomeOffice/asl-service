@@ -47,6 +47,7 @@
     "morgan": "^1.9.1",
     "mustache": "^2.3.2",
     "on-finished": "^2.3.0",
+    "prop-types": "^15.8.1",
     "qs": "^6.5.2",
     "r2": "^2.0.1",
     "react": "^16.9.0",
@@ -63,7 +64,7 @@
   },
   "devDependencies": {
     "eslint": "^4.19.1",
-    "eslint-config-lennym": "^2.3.0",
+    "eslint-config-lennym": "^2.3.1",
     "mocha": "^8.2.0",
     "sinon": "^6.1.5",
     "webpack": "^4.43.0"

@@ -1,11 +1,12 @@
-/* eslint implicit-dependencies/no-implicit: [2, { dev: true }] */
-
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Wrapper } from '@asl/components';
+
+/* eslint-disable implicit-dependencies/no-implicit */
 import Component from '{{page}}';
 import store from '@asl/service/ui/store';
+/* eslint-enable implicit-dependencies/no-implicit */
 
 hydrate(
   <Provider store={store}>
