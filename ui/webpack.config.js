@@ -1,10 +1,11 @@
-/* eslint implicit-dependencies/no-implicit: [2, { dev: true }] */
+/* eslint implicit-dependencies/no-implicit: [2, { peer: true }] */
 
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const mkdir = require('mkdirp');
 const TerserPlugin = require('terser-webpack-plugin');
+const { ProvidePlugin } = require('webpack');
 const babelrc = require('../.babelrc.json');
 
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
@@ -65,7 +66,11 @@ module.exports = dirs => {
     devtool: mode === 'development' && 'inline-source-map',
     target: 'web',
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      fallback: {
+        path: require.resolve('path-browserify'),
+        buffer: require.resolve('buffer/')
+      }
     },
     module: {
       rules: [
@@ -79,6 +84,13 @@ module.exports = dirs => {
         }
       ]
     },
+    plugins: [
+      // fix "process is not defined" error:
+      // (do "npm install process" before running the build)
+      new ProvidePlugin({
+        process: 'process/browser'
+      })
+    ],
     optimization: {
       minimizer: [
         new TerserPlugin({
