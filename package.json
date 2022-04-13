@@ -44,7 +44,7 @@
     "keycloak-connect": "^7.0.1",
     "lodash": "^4.17.21",
     "mkdirp": "^0.5.1",
-    "moment": "^2.22.2",
+    "moment": "^2.29.2",
     "morgan": "^1.9.1",
     "mustache": "^2.3.2",
     "on-finished": "^2.3.0",
