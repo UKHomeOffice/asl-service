@@ -69,7 +69,8 @@ module.exports = dirs => {
       extensions: ['.js', '.jsx'],
       fallback: {
         path: require.resolve('path-browserify'),
-        buffer: require.resolve('buffer/')
+        buffer: require.resolve('buffer/'),
+        url: require.resolve('url/')
       }
     },
     module: {
