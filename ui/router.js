@@ -115,6 +115,7 @@ module.exports = settings => {
   app.use((req, res, next) => {
     res.locals.user = req.user || {};
     res.locals.static = res.locals.static || {};
+    set(res.locals, 'static.user', req.user.profile);
     set(res.locals, 'static.content', merge({}, res.locals.static.content, settings.content));
     set(res.locals, 'static.urls', merge({}, settings.urls));
     next();
