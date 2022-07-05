@@ -40,6 +40,8 @@
     "helmet": "^3.21.1",
     "helmet-csp": "^2.9.3",
     "hot-shots": "^6.8.2",
+    "http-proxy": "^1.18.1",
+    "into-stream": "^4.0.0",
     "js-base64": "^2.5.1",
     "keycloak-connect": "^7.0.1",
     "lodash": "^4.17.21",
