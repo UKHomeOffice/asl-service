@@ -26,7 +26,7 @@ about in the Non-accessible content section of this statement.
 If you need information from this website in a different format, or if you need to apply for or amend a licence but are
 unable to use this site, then contact us and we will make alternative arrangements.
 
- * [aspelqueries@homeoffice.gov.uk](mailto:aspelqueries@homeoffice.gov.uk)
+ * [aspeltechnicalqueries@homeoffice.gov.uk](mailto:aspeltechnicalqueries@homeoffice.gov.uk)
  * call 0207 035 4469
 
 Please note, our working hours are Monday to Friday 09:00-17:00 excluding bank holidays. We’ll consider your request and
@@ -37,7 +37,7 @@ get back to you in 3 working days.
 We’re always looking to improve the accessibility of this website. If you find any problems not listed on this page or
 think we’re not meeting accessibility requirements, contact:
 
- * [aspelqueries@homeoffice.gov.uk](mailto:aspelqueries@homeoffice.gov.uk)
+ * [aspeltechnicalqueries@homeoffice.gov.uk](mailto:aspeltechnicalqueries@homeoffice.gov.uk)
  * call 0207 035 4469
 
 Please note, our working hours are Monday to Friday 09:00-17:00 excluding bank holidays. We’ll consider your request and
