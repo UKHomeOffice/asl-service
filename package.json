@@ -1,6 +1,6 @@
 {
   "name": "@asl/service",
-  "version": "9.1.5",
+  "version": "9.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
