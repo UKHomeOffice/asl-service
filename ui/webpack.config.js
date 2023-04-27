@@ -77,7 +77,9 @@ module.exports = dirs => {
       rules: [
         {
           test: /\.js(x)?/,
-          exclude: path => path.match(/node_modules/) && !path.match(/node_modules\/@asl/),
+          exclude: path => path.match(/node_modules/) &&
+            !path.match(/node_modules\/@asl/) &&
+            !path.match(/node_modules\/@ukhomeoffice/),
           use: {
             loader: 'babel-loader',
             options: babelrc
