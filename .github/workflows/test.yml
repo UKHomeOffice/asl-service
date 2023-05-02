@@ -1,0 +1,12 @@
+name: "Test"
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  test:
+    uses: UKHomeOffice/sas-github-workflows/.github/workflows/test-npm.yml@v1
+    secrets: inherit
+    with:
+      lintCommand: "test:lint"
+      testCommand: "run test:unit"
