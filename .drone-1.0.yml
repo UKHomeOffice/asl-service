@@ -12,7 +12,7 @@ steps:
       GITHUB_AUTH_TOKEN:
         from_secret: github_token
     commands:
-      - npm ci
+      - echo process.env.GITHUB_AUTH_TOKEN && npm ci
   - name: test
     image: node:18
     environment:
