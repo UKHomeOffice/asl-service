@@ -9,10 +9,8 @@ steps:
         from_secret: npm_auth_username
       NPM_AUTH_TOKEN:
         from_secret: npm_auth_token
-      GITHUB_AUTH_TOKEN:
-        from_secret: github_token
     commands:
-      - echo process.env.GITHUB_AUTH_TOKEN && npm ci
+      - npm ci
   - name: test
     image: node:18
     environment:
@@ -20,8 +18,6 @@ steps:
         from_secret: npm_auth_username
       NPM_AUTH_TOKEN:
         from_secret: npm_auth_token
-      GITHUB_AUTH_TOKEN:
-        from_secret: github_token
     commands:
       - npm test
   - name: publish
@@ -31,8 +27,6 @@ steps:
         from_secret: npm_auth_username
       NPM_AUTH_TOKEN:
         from_secret: npm_auth_token
-      GITHUB_AUTH_TOKEN:
-        from_secret: github_token
     commands:
       - npm publish
     when:
