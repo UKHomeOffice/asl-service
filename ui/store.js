@@ -2,7 +2,7 @@ const url = require('url');
 const { applyMiddleware, createStore } = require('redux');
 const thunk = require('redux-thunk').default;
 const rootReducer = require('./reducers');
-const { queryStringFromState } = require('@asl/components/src/utils');
+const { queryStringFromState } = require('@ukhomeoffice/asl-components/src/utils');
 
 const persistState = store => next => action => {
   const result = next(action);

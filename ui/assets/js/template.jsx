@@ -1,7 +1,7 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Wrapper } from '@asl/components';
+import { Wrapper } from '@ukhomeoffice/asl-components';
 
 /* eslint-disable implicit-dependencies/no-implicit */
 import Component from '{{page}}';

@@ -8,7 +8,7 @@ import {
   Breadcrumbs,
   StatusBar,
   Wrapper
-} from '@asl/components';
+} from '@ukhomeoffice/asl-components';
 
 const Wrapped = ({ store, children }) => <Provider store={store}>{ children }</Provider>;
 
