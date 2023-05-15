@@ -5,10 +5,8 @@ steps:
   - name: install
     image: node:18
     environment:
-      NPM_AUTH_USERNAME:
-        from_secret: npm_auth_username
-      NPM_AUTH_TOKEN:
-        from_secret: npm_auth_token
+      ART_AUTH_TOKEN:
+        from_secret: art_auth_token
       GITHUB_AUTH_TOKEN:
         from_secret: github_token
     commands:
@@ -16,10 +14,8 @@ steps:
   - name: test
     image: node:18
     environment:
-      NPM_AUTH_USERNAME:
-        from_secret: npm_auth_username
-      NPM_AUTH_TOKEN:
-        from_secret: npm_auth_token
+      ART_AUTH_TOKEN:
+        from_secret: art_auth_token
       GITHUB_AUTH_TOKEN:
         from_secret: github_token
     commands:
@@ -27,10 +23,8 @@ steps:
   - name: publish
     image: node:18
     environment:
-      NPM_AUTH_USERNAME:
-        from_secret: npm_auth_username
-      NPM_AUTH_TOKEN:
-        from_secret: npm_auth_token
+      ART_AUTH_TOKEN:
+        from_secret: art_auth_token
       GITHUB_AUTH_TOKEN:
         from_secret: github_token
     commands:
