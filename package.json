@@ -19,16 +19,16 @@
   },
   "homepage": "https://github.com/UKHomeOffice/asl-service#readme",
   "dependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.0.0",
+    "@babel/core": "^7.24.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-react": "^7.24.1",
+    "@babel/register": "^7.23.7",
     "@lennym/redis-session": "^2.2.0",
-    "@ukhomeoffice/asl-components": "12.0.0",
+    "@ukhomeoffice/asl-components": "13.3.1",
     "@ukhomeoffice/frontend-toolkit": "^3.0.0",
     "aws-sdk": "^2.1370.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
     "babel-plugin-transform-require-ignore": "^0.1.1",
     "body-parser": "^1.18.3",
     "buffer": "^6.0.3",
@@ -72,7 +72,7 @@
   "devDependencies": {
     "eslint": "^8.26.0",
     "eslint-config-lennym": "^2.3.1",
-    "mocha": "^10.0.0",
+    "mocha": "^10.4.0",
     "sinon": "^6.1.5"
   },
   "publishConfig": {
