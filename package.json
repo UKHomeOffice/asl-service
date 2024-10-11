@@ -72,7 +72,7 @@
   },
   "devDependencies": {
     "eslint": "^8.26.0",
-    "@ukhomeoffice/asl-eslint-common": "^2.2.0",
+    "@ukhomeoffice/eslint-config-asl": "^3.0.0",
     "mocha": "^10.4.0",
     "sinon": "^6.1.5"
   },
