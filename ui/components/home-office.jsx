@@ -25,28 +25,32 @@ class HomeOffice extends React.Component {
 
           <header role="banner" className={this.props.propositionHeader ? 'with-proposition' : ''}>
             <a href={this.props.skipToContentTarget} className="govuk-skip-link">{this.props.skipToContent}</a>
-            <div className="font-ui wrapper-header">
-              <div className="header-logo">
-                <a href={ this.props.homepageUrl } title={ this.props.logoLinkTitle } id="logo" className="content">
-                  <img src={`${this.props.hoAssetPath}/images/ho-logo.svg`} alt="Home Office logo" />
-                </a>
-              </div>
-              {
-                this.props.propositionHeader &&
-                  <div className="header-title">
-                    {
-                      this.props.propositionHeaderLink &&
-                      <a href={this.props.propositionHeaderLink} id="header-name">{this.props.propositionHeader}</a>
-                    }
-                    {
-                      !this.props.propositionHeaderLink && this.props.propositionHeader
-                    }
-                  </div>
-              }
-              <div className="content">
+            <div className="font-ui wrapper-header govuk-grid-row">
+              <div className="govuk-grid-column-two-thirds">
+                <div className="header-logo ">
+                  <a href={ this.props.homepageUrl } title={ this.props.logoLinkTitle } id="logo" className="content">
+                    <img src={`${this.props.hoAssetPath}/images/ho-logo.svg`} alt="Home Office logo" />
+                  </a>
+                </div>
                 {
-                  this.props.headerContent && this.props.headerContent
+                  this.props.propositionHeader &&
+                    <div className="header-title">
+                      {
+                        this.props.propositionHeaderLink &&
+                        <a href={this.props.propositionHeaderLink} id="header-name">{this.props.propositionHeader}</a>
+                      }
+                      {
+                        !this.props.propositionHeaderLink && this.props.propositionHeader
+                      }
+                    </div>
                 }
+              </div>
+              <div className="govuk-grid-column-one-third">
+                <div className="content">
+                  {
+                    this.props.headerContent && this.props.headerContent
+                  }
+                </div>
               </div>
             </div>
           </header>
