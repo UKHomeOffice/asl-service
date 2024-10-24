@@ -17,7 +17,7 @@ class PhaseBanner extends React.Component {
     return <div className="govuk-phase-banner">
       <div className="govuk-width-container">
         <p className="govuk-phase-banner__content">
-          <strong className="govuk-tag govuk-phase-banner__content__tag">{this.props.phase}</strong>
+          <strong className="govuk-tag govuk-phase-banner__content__tag">{this.props.phase.toString().toUpperCase()}</strong>
           { this.renderContent() }
         </p>
       </div>
