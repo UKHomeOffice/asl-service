@@ -1,2 +1,4 @@
 extends:
   - "@ukhomeoffice/asl"
+parserOptions:
+  ecmaVersion: 2020
