@@ -28,6 +28,8 @@ const cookies = require('./pages/cookies');
 const accessibility = require('./pages/accessibility');
 const ErrorComponent = require('./views/error');
 
+const featureFlag = require('./feature-flag');
+
 const base64 = require.resolve('js-base64');
 
 module.exports = settings => {
@@ -120,6 +122,8 @@ module.exports = settings => {
     set(res.locals, 'static.urls', merge({}, settings.urls));
     next();
   });
+
+  app.use(featureFlag.middleware);
 
   app.use(notifications());
 
