@@ -41,7 +41,7 @@ describe('Feature flags', () => {
       middleware(fakeReq, fakeRes, nextStub);
 
       assert(fakeReq.hasFeatureFlag('feature-a'), 'Feature A should be enabled');
-      assert(!fakeReq.hasFeatureFlag('feature-b'), 'Feature A should be disabled');
+      assert(!fakeReq.hasFeatureFlag('feature-b'), 'Feature B should be disabled');
     });
   });
 
