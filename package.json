@@ -32,7 +32,7 @@
     "babel-plugin-transform-require-ignore": "^0.1.1",
     "body-parser": "^1.18.3",
     "buffer": "^6.0.3",
-    "express": "^4.16.2",
+    "express": "^4.21.2",
     "express-react-views": "^0.11.0",
     "express-session": "^1.15.6",
     "find-root": "^1.1.0",
