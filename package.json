@@ -1,6 +1,6 @@
 {
   "name": "@asl/service",
-  "version": "10.5.3",
+  "version": "10.6.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,7 @@
     "@babel/preset-react": "^7.24.1",
     "@babel/register": "^7.23.7",
     "@lennym/redis-session": "^2.2.0",
-    "@ukhomeoffice/asl-components": "13.6.4",
+    "@ukhomeoffice/asl-components": "13.8.0",
     "@ukhomeoffice/frontend-toolkit": "^3.0.0",
     "aws-sdk": "^2.1370.0",
     "babel-plugin-transform-require-ignore": "^0.1.1",
