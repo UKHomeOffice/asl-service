@@ -43,11 +43,11 @@ class HomeOffice extends React.Component {
                     }
                   </div>
               }
-              <div className="content">
-                {
-                  this.props.headerContent && this.props.headerContent
-                }
-              </div>
+
+              {
+                this.props.headerContent && this.props.headerContent
+              }
+
             </div>
           </header>
 
