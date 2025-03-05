@@ -1,6 +1,6 @@
 {
   "name": "@asl/service",
-  "version": "10.6.1",
+  "version": "11.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -43,7 +43,7 @@
     "http-proxy": "^1.18.1",
     "into-stream": "^4.0.0",
     "js-base64": "^2.5.1",
-    "keycloak-connect": "^7.0.1",
+    "keycloak-connect": "^26.1.1",
     "lodash": "^4.17.21",
     "mkdirp": "^0.5.1",
     "moment": "^2.29.4",
